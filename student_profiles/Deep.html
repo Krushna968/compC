@@ -128,17 +128,63 @@
       margin: 0 10px;
       text-decoration: none;
     }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    .back-button {
-      position: fixed;
-      top: 40px;
-      left: 30px;
-      background: #fff;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      border: none;
-      color: #4f46e5;
-      font-size: 1.2rem;
-      cursor: pointer
-    }
+  <section class="profile-hero">
+    <div class="profile-avatar">D</div>
+    <h1>Deep Sawant</h1>
+    <p class="profile-title">Computer Engineering Student | DMCE C Division</p>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I'm Deep Sawant, a Computer Engineering student passionate about tech and innovation. I work on web dev, automation, and real-world problem solving.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Home Automation</h3>
+        <p>ESP32-based IoT system to control lights/fans via Blynk and relays without extra power modules.</p>
+      </div>
+      <div class="card">
+        <h3>Sales Forecasting</h3>
+        <p>Used machine learning to forecast product sales trends with Python and regression models.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" style="background: #eef2ff;">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li>HTML / CSS</li>
+      <li>JavaScript</li>
+      <li>Python</li>
+      <li>C++</li>
+      <li>ESP32 / IoT</li>
+      <li>Git & GitHub</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Let’s connect! Reach out through email or LinkedIn.</p>
+    <div class="contact-icons">
+      <a href="mailto:your@email.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </section>
+</body>
+</html>
