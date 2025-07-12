@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMCE Computer C - Students Directory</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="college-logo.png" alt="DMCE Logo">
+                <span>DMCE Computer C - Batch 2024</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#thoughts">Thoughts</a></li>
+                <li><a href="students.html">Students</a></li>
+                <li><a href="index.html#chatbot">Chatbot</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Students Directory Header -->
+    <section class="students-header">
+        <div class="container">
+            <h1>Our Batchmates</h1>
+            <p>Meet the talented students of Computer Engineering (C Division)</p>
+        </div>
+    </section>
+
+    <!-- Students Search and Filter -->
+    <section class="students-filter">
+        <div class="container">
+            <div class="search-box">
+                <input type="text" id="student-search" placeholder="Search students...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Students Grid -->
+    <section class="students-grid">
+        <div class="container">
+            <div class="grid-container" id="students-container">
+                <!-- Students will be added dynamically via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DMCE Computer C</h3>
+                    <p>Datta Meghe College of Engineering</p>
+                    <p>Computer Engineering (C Division)</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="students.html">Students</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> computerC.dmce@example.com</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 DMCE Computer C. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="students.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
