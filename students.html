@@ -93,4 +93,42 @@
     <script src="students.js"></script>
     <script src="script.js"></script>
 </body>
-</html>
+</html>// Example entry in students.js
+const students = [
+  {
+    name: "Rajan",
+    roll: "C-01",
+    interests: ["AI", "Web Dev"],
+    skills: ["JavaScript", "Python"],
+    image: "rajan.jpg",
+    profileLink: "rajan.html" // <- this line is key
+  },
+  // Add more students here...
+];
+
+const container = document.getElementById("students-container");
+
+students.forEach(student => {
+  const card = document.createElement("div");
+  card.className = "student-card";
+  card.innerHTML = `
+    <div class="student-card-inner">
+      <div class="student-avatar">
+        <img src="${student.image}" alt="${student.name}">
+        <div class="student-status"></div>
+      </div>
+      <h3 class="student-name">${student.name}</h3>
+      <p class="student-roll">${student.roll}</p>
+      <div class="student-interests">
+        ${student.interests.map(i => `<span class="interest-tag">${i}</span>`).join("")}
+      </div>
+      <div class="student-skills">
+        ${student.skills.map(s => `<span class="skill-tag">${s}</span>`).join("")}
+      </div>
+      <div class="student-actions">
+        <a href="${student.profileLink}" class="btn-profile">View Profile</a>
+      </div>
+    </div>
+  `;
+  container.appendChild(card);
+});
