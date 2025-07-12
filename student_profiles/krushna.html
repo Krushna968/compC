@@ -4,99 +4,791 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Krushna - DMCE Computer C</title>
-  <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-        background: #f4f7ff;
-        font-family: 'Poppins', sans-serif;
-        color: #333;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #2d3748;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    .profile-hero {
-        background: linear-gradient(135deg, #4f46e5 0%, #6d28d9 100%);
-        color: white;
-        padding: 120px 0 80px;
-        text-align: center;
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    .profile-avatar {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: white;
-        color: #4f46e5;
-        font-weight: bold;
-        font-size: 3.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
-    .welcome-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 50px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
-    .welcome-title {
-        font-size: 2rem;
-        color: #4f46e5;
-        margin-bottom: 20px;
-        font-weight: 700;
-        text-align: center;
+
+    .shape {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
     }
-    .welcome-message {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        text-align: center;
+
+    .shape:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
     }
+
+    .shape:nth-child(2) {
+      width: 60px;
+      height: 60px;
+      top: 60%;
+      left: 80%;
+      animation-delay: -2s;
+    }
+
+    .shape:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      top: 80%;
+      left: 20%;
+      animation-delay: -4s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+      }
+    }
+
+    /* Navigation */
     .back-button {
-        position: fixed;
-        top: 40px;
-        left: 30px;
-        background: #fff;
-        border-radius: 50%;
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .profile-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      padding: 60px 40px;
+      margin: 0 auto;
+      max-width: 600px;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUp 1s ease forwards;
+    }
+
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .profile-avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+      color: white;
+      font-weight: 800;
+      font-size: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-avatar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .profile-name {
+      font-size: 3rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .profile-title {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .profile-tagline {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .social-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 60px 0;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .content-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 40px;
+      transition: all 0.3s ease;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUp 1s ease forwards;
+    }
+
+    .content-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .content-card:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .content-card:nth-child(4) {
+      animation-delay: 0.6s;
+    }
+
+    .content-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      margin-right: 20px;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      margin: 0;
+    }
+
+    .card-content {
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.8;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .skill-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .skill-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    .skill-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #ffd700;
+    }
+
+    .skill-name {
+      font-size: 0.9rem;
+      color: white;
+      font-weight: 500;
+    }
+
+    /* Projects Section */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .project-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .project-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(10px);
+    }
+
+    .project-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .project-description {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 15px;
+    }
+
+    .project-tech {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tech-tag {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Interests Section */
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .interest-item {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 12px 20px;
+      color: white;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .interest-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    /* Quote Section */
+    .quote-section {
+      text-align: center;
+      margin: 60px 0;
+    }
+
+    .quote-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 50px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quote-text {
+      font-size: 1.5rem;
+      font-style: italic;
+      color: white;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .quote-author {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+    }
+
+    /* Contact Section */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .contact-text {
+      color: white;
+      font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 15px;
+      }
+
+      .profile-name {
+        font-size: 2.5rem;
+      }
+
+      .profile-avatar {
+        width: 140px;
+        height: 140px;
+        font-size: 3rem;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .content-card {
+        padding: 30px 25px;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+      }
+
+      .back-button {
         width: 50px;
         height: 50px;
-        border: none;
-        color: #4f46e5;
-        font-size: 1.2rem;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        top: 20px;
+        left: 20px;
+      }
+
+      .quote-text {
+        font-size: 1.3rem;
+      }
     }
-    .back-button:hover {
-        background: #4f46e5;
-        color: white;
+
+    /* Scroll Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <button class="back-button" onclick="window.history.back()">
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+  </div>
+
+  <!-- Back Button -->
+  <button class="back-button" onclick="window.history.back()" title="Go Back">
     <i class="fas fa-arrow-left"></i>
   </button>
 
-  <section class="profile-hero">
+  <!-- Hero Section -->
+  <section class="hero">
     <div class="container">
-      <div class="profile-avatar">K</div>
-      <h1 class="profile-name">Krushna</h1>
-      <p class="profile-title">Computer Engineering Student | DMCE Batch 2024</p>
-    </div>
-  </section>
-
-  <section class="profile-welcome">
-    <div class="container">
-      <div class="welcome-card">
-        <h2 class="welcome-title">Welcome to My Profile! 🎉</h2>
-        <p class="welcome-message">
-          Hello! I'm Krushna, a passionate Computer Engineering student from DMCE's C Division.
-          This page showcases my projects, skills, and tech journey.
-        </p>
-        <p class="welcome-message">
-          Feel free to explore and connect with me as we grow in the world of innovation and development.
-        </p>
+      <div class="profile-card">
+        <div class="profile-avatar">K</div>
+        <h1 class="profile-name">Krushna</h1>
+        <p class="profile-title">Computer Engineering Student</p>
+        <p class="profile-tagline">"Coding the future, one line at a time"</p>
+        
+        <div class="social-links">
+          <a href="#" class="social-link" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#" class="social-link" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="#" class="social-link" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link" title="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Main Content -->
+  <section class="main-content">
+    <div class="container">
+      <div class="content-grid">
+        <!-- About Me -->
+        <div class="content-card fade-in">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <h2 class="card-title">About Me</h2>
+          </div>
+          <div class="card-content">
+            <p>Hey there! I'm Krushna, a passionate Computer Engineering student from DMCE's C Division, Batch 2024. I'm constantly exploring new technologies and love solving complex problems through code.</p>
+            <p>When I'm not coding, you'll find me learning about emerging tech trends, working on personal projects, or collaborating with my amazing batchmates on innovative solutions.</p>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="content-card fade-in">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <h2 class="card-title">Technical Skills</h2>
+          </div>
+          <div class="card-content">
+            <div class="skills-grid">
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fab fa-python"></i>
+                </div>
+                <div class="skill-name">Python</div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fab fa-js"></i>
+                </div>
+                <div class="skill-name">JavaScript</div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fab fa-react"></i>
+                </div>
+                <div class="skill-name">React</div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fab fa-node-js"></i>
+                </div>
+                <div class="skill-name">Node.js</div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fas fa-database"></i>
+                </div>
+                <div class="skill-name">MongoDB</div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fab fa-git-alt"></i>
+                </div>
+                <div class="skill-name">Git</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="content-card fade-in">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-project-diagram"></i>
+            </div>
+            <h2 class="card-title">Featured Projects</h2>
+          </div>
+          <div class="card-content">
+            <div class="project-list">
+              <div class="project-item">
+                <h3 class="project-title">Smart Campus Management System</h3>
+                <p class="project-description">A comprehensive web application for managing student information, attendance, and academic records with real-time updates.</p>
+                <div class="project-tech">
+                  <span class="tech-tag">React</span>
+                  <span class="tech-tag">Node.js</span>
+                  <span class="tech-tag">MongoDB</span>
+                </div>
+              </div>
+              <div class="project-item">
+                <h3 class="project-title">AI-Powered Chatbot</h3>
+                <p class="project-description">An intelligent chatbot using natural language processing to assist students with academic queries and college information.</p>
+                <div class="project-tech">
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">TensorFlow</span>
+                  <span class="tech-tag">Flask</span>
+                </div>
+              </div>
+              <div class="project-item">
+                <h3 class="project-title">E-Learning Platform</h3>
+                <p class="project-description">A modern learning management system with interactive video lectures, quizzes, and progress tracking.</p>
+                <div class="project-tech">
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">Express</span>
+                  <span class="tech-tag">MySQL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="content-card fade-in">
+          <div class="card-header">
+            <div class="card-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h2 class="card-title">Interests & Hobbies</h2>
+          </div>
+          <div class="card-content">
+            <div class="interests-list">
+              <div class="interest-item">🤖 Artificial Intelligence</div>
+              <div class="interest-item">🌐 Web Development</div>
+              <div class="interest-item">📱 Mobile Apps</div>
+              <div class="interest-item">🎮 Game Development</div>
+              <div class="interest-item">🔐 Cybersecurity</div>
+              <div class="interest-item">📊 Data Science</div>
+              <div class="interest-item">🎵 Music Production</div>
+              <div class="interest-item">📚 Reading Tech Blogs</div>
+              <div class="interest-item">🏃‍♂️ Running</div>
+              <div class="interest-item">♟️ Chess</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="quote-section">
+    <div class="container">
+      <div class="quote-card fade-in">
+        <p class="quote-text">"The best way to predict the future is to create it."</p>
+        <p class="quote-author">- My Programming Philosophy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="main-content">
+    <div class="container">
+      <div class="content-card fade-in">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h2 class="card-title">Get In Touch</h2>
+        </div>
+        <div class="card-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-text">krushna.dmce@gmail.com</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <div class="contact-text">+91 98765 43210</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-text">Mumbai, Maharashtra, India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Smooth scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Add click effects to interactive elements
+    document.querySelectorAll('.skill-item, .interest-item, .project-item').forEach(item => {
+      item.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+      });
+    });
+
+    // Parallax effect for floating shapes
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const shapes = document.querySelectorAll('.shape');
+      
+      shapes.forEach((shape, index) => {
+        const speed = 0.5 + (index * 0.1);
+        shape.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+
+    // Add loading animation
+    window.addEventListener('load', () => {
+      document.body.style.overflow = 'visible';
+    });
+  </script>
 </body>
 </html>
