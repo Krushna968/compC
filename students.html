@@ -1,14 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMCE Computer C - Students Directory</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Our Students - DMCE Computer C</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Header */
+        .header {
+            padding: 120px 0 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Search and Filter */
+        .controls {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .view-btn.active {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Students Grid */
+        .students-container {
+            padding: 20px 0;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .student-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .student-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .student-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .student-id {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .student-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .student-link {
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .student-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* List View */
+        .students-list {
+            display: none;
+        }
+
+        .students-list.active {
+            display: block;
+        }
+
+        .student-list-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s;
+        }
+
+        .student-list-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .list-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .list-info {
+            flex: 1;
+        }
+
+        .list-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .list-id {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .list-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Loading and Empty States */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                min-width: auto;
+            }
+
+            .students-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .student-list-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="logo">
@@ -17,118 +347,210 @@
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
+                <li><a href="#students">Students</a></li>
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#thoughts">Thoughts</a></li>
-                <li><a href="students.html">Students</a></li>
                 <li><a href="index.html#chatbot">Chatbot</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
-    <!-- Students Directory Header -->
-    <section class="students-header">
+    <!-- Header -->
+    <header class="header">
         <div class="container">
-            <h1>Our Batchmates</h1>
-            <p>Meet the talented students of Computer Engineering (C Division)</p>
+            <h1><i class="fas fa-graduation-cap"></i> Meet Our Students</h1>
+            <p>Discover the talented minds of DMCE Computer C Batch 2024</p>
         </div>
-    </section>
+    </header>
 
-    <!-- Students Search and Filter -->
-    <section class="students-filter">
-        <div class="container">
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Search and Controls -->
+        <div class="controls">
             <div class="search-box">
-                <input type="text" id="student-search" placeholder="Search students...">
-                <button><i class="fas fa-search"></i></button>
+                <input type="text" id="searchInput" placeholder="Search students by name or ID...">
+            </div>
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid">
+                    <i class="fas fa-th"></i> Grid
+                </button>
+                <button class="view-btn" data-view="list">
+                    <i class="fas fa-list"></i> List
+                </button>
             </div>
         </div>
-    </section>
 
-    <!-- Students Grid -->
-    <section class="students-grid">
-        <div class="container">
-            <div class="grid-container" id="students-container">
-                <!-- Students will be added dynamically via JavaScript -->
+        <!-- Students Container -->
+        <div class="students-container">
+            <!-- Loading State -->
+            <div class="loading" id="loadingState">
+                <i class="fas fa-spinner fa-spin"></i> Loading students...
+            </div>
+
+            <!-- Grid View -->
+            <div class="students-grid" id="studentsGrid">
+                <!-- Students will be loaded here -->
+            </div>
+
+            <!-- List View -->
+            <div class="students-list" id="studentsList">
+                <!-- Students will be loaded here -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No Students Found</h3>
+                <p>Try adjusting your search terms</p>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>DMCE Computer C</h3>
-                    <p>Datta Meghe College of Engineering</p>
-                    <p>Computer Engineering (C Division)</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="students.html">Students</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p><i class="fas fa-envelope"></i> computerC.dmce@example.com</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+    <script>
+        // Student data - this would normally come from your individual HTML files
+        const students = [
+            { id: 1, name: "Ayush", file: "Ayush.html" },
+            { id: 4, name: "Student 4", file: "student4.html" },
+            { id: 5, name: "Student 5", file: "student5.html" },
+            { id: 6, name: "Student 6", file: "student6.html" },
+            { id: 7, name: "Student 7", file: "student7.html" },
+            { id: 8, name: "Student 8", file: "student8.html" },
+            { id: 9, name: "Student 9", file: "student9.html" },
+            { id: 10, name: "Student 10", file: "student10.html" },
+            { id: 11, name: "Student 11", file: "student11.html" },
+            { id: 12, name: "Student 12", file: "student12.html" },
+            { id: 13, name: "Student 13", file: "student13.html" },
+            { id: 14, name: "Student 14", file: "student14.html" },
+            { id: 15, name: "Student 15", file: "student15.html" },
+            { id: 16, name: "Student 16", file: "student16.html" },
+            { id: 17, name: "Student 17", file: "student17.html" },
+            { id: 18, name: "Student 18", file: "student18.html" },
+            { id: 19, name: "Student 19", file: "student19.html" },
+            { id: 20, name: "Student 20", file: "student20.html" },
+            { id: 21, name: "Student 21", file: "student21.html" },
+            { id: 22, name: "Student 22", file: "student22.html" },
+            { id: 23, name: "Student 23", file: "student23.html" },
+            { id: 24, name: "Student 24", file: "student24.html" },
+            { id: 25, name: "Student 25", file: "student25.html" },
+            { id: 28, name: "Student 28", file: "student28.html" },
+            { id: 29, name: "Student 29", file: "student29.html" },
+            { id: 30, name: "Student 30", file: "student30.html" },
+            { id: 31, name: "Student 31", file: "student31.html" },
+            { id: 32, name: "Student 32", file: "student32.html" },
+            { id: 33, name: "Student 33", file: "student33.html" },
+            { id: 34, name: "Student 34", file: "student34.html" },
+            { name: "Deep", file: "Deep.html" },
+            { name: "Krushna", file: "krushna.html" },
+            { name: "Rajan", file: "rajan.html" }
+        ];
+
+        let currentView = 'grid';
+        let filteredStudents = [...students];
+
+        // Initialize the page
+        function init() {
+            setTimeout(() => {
+                document.getElementById('loadingState').style.display = 'none';
+                renderStudents();
+            }, 1000);
+        }
+
+        // Render students based on current view
+        function renderStudents() {
+            const gridContainer = document.getElementById('studentsGrid');
+            const listContainer = document.getElementById('studentsList');
+            const emptyState = document.getElementById('emptyState');
+
+            if (filteredStudents.length === 0) {
+                gridContainer.innerHTML = '';
+                listContainer.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+
+            if (currentView === 'grid') {
+                renderGridView(gridContainer);
+                gridContainer.style.display = 'grid';
+                listContainer.classList.remove('active');
+            } else {
+                renderListView(listContainer);
+                gridContainer.style.display = 'none';
+                listContainer.classList.add('active');
+            }
+        }
+
+        // Render grid view
+        function renderGridView(container) {
+            container.innerHTML = filteredStudents.map(student => `
+                <div class="student-card" onclick="openProfile('${student.file}')">
+                    <div class="student-avatar">
+                        ${getInitials(student.name)}
+                    </div>
+                    <div class="student-name">${student.name}</div>
+                    <div class="student-id">${student.id ? `ID: ${student.id}` : 'DMCE Student'}</div>
+                    <div class="student-links">
+                        <a href="student_profiles/${student.file}" class="student-link" onclick="event.stopPropagation()">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 DMCE Computer C. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+            `).join('');
+        }
 
-    <script src="students.js"></script>
-    <script src="script.js"></script>
+        // Render list view
+        function renderListView(container) {
+            container.innerHTML = filteredStudents.map(student => `
+                <div class="student-list-item" onclick="openProfile('${student.file}')">
+                    <div class="list-avatar">
+                        ${getInitials(student.name)}
+                    </div>
+                    <div class="list-info">
+                        <div class="list-name">${student.name}</div>
+                        <div class="list-id">${student.id ? `ID: ${student.id}` : 'DMCE Student'}</div>
+                    </div>
+                    <div class="list-actions">
+                        <a href="student_profiles/${student.file}" class="student-link" onclick="event.stopPropagation()">
+                            <i class="fas fa-user"></i> View Profile
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Get initials from name
+        function getInitials(name) {
+            return name.split(' ').map(word => word.charAt(0).toUpperCase()).join('').slice(0, 2);
+        }
+
+        // Open student profile
+        function openProfile(filename) {
+            window.open(`student_profiles/${filename}`, '_blank');
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            filteredStudents = students.filter(student => 
+                student.name.toLowerCase().includes(searchTerm) ||
+                (student.id && student.id.toString().includes(searchTerm))
+            );
+            renderStudents();
+        });
+
+        // View toggle functionality
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentView = this.dataset.view;
+                renderStudents();
+            });
+        });
+
+        // Initialize the page
+        init();
+    </script>
 </body>
-</html>// Example entry in students.js
-const students = [
-  {
-    name: "Rajan",
-    roll: "C-01",
-    interests: ["AI", "Web Dev"],
-    skills: ["JavaScript", "Python"],
-    image: "rajan.jpg",
-    profileLink: "rajan.html" // <- this line is key
-  },
-  // Add more students here...
-];
-
-const container = document.getElementById("students-container");
-
-students.forEach(student => {
-  const card = document.createElement("div");
-  card.className = "student-card";
-  card.innerHTML = `
-    <div class="student-card-inner">
-      <div class="student-avatar">
-        <img src="${student.image}" alt="${student.name}">
-        <div class="student-status"></div>
-      </div>
-      <h3 class="student-name">${student.name}</h3>
-      <p class="student-roll">${student.roll}</p>
-      <div class="student-interests">
-        ${student.interests.map(i => `<span class="interest-tag">${i}</span>`).join("")}
-      </div>
-      <div class="student-skills">
-        ${student.skills.map(s => `<span class="skill-tag">${s}</span>`).join("")}
-      </div>
-      <div class="student-actions">
-        <a href="${student.profileLink}" class="btn-profile">View Profile</a>
-      </div>
-    </div>
-  `;
-  container.appendChild(card);
-});
+</html>
