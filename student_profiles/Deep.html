@@ -8,18 +8,25 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     html {
       scroll-behavior: smooth;
     }
-
     body {
       margin: 0;
-      background: #f4f7ff;
       font-family: 'Poppins', sans-serif;
       color: #333;
+      background: #f4f7ff;
     }
-
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
     nav {
       background: #fff;
       padding: 15px 30px;
@@ -28,7 +35,6 @@
       top: 0;
       z-index: 1000;
     }
-
     nav ul {
       list-style: none;
       display: flex;
@@ -38,17 +44,25 @@
       padding: 0;
       font-weight: 500;
     }
-
     nav a {
       text-decoration: none;
       color: #4f46e5;
       transition: color 0.3s;
     }
-
     nav a:hover {
       color: #6d28d9;
     }
-
+    #darkToggle {
+      position: absolute;
+      right: 30px;
+      top: 15px;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
     .profile-hero {
       background: linear-gradient(-45deg, #4f46e5, #6d28d9, #8b5cf6, #6366f1);
       background-size: 400% 400%;
@@ -57,13 +71,11 @@
       padding: 120px 0 80px;
       text-align: center;
     }
-
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     .profile-avatar {
       width: 150px;
       height: 150px;
@@ -78,48 +90,34 @@
       margin: 0 auto 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-
     h1 {
       font-size: 2.5rem;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
     }
-
     .profile-title {
       font-size: 1.2rem;
-      opacity: 0.9;
     }
-
     section {
       padding: 60px 20px;
-      animation: fadeIn 1.2s ease;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     h2 {
       color: #4f46e5;
       text-align: center;
       font-size: 2rem;
       margin-bottom: 30px;
     }
-
     p {
       line-height: 1.8;
       max-width: 700px;
       margin: 0 auto;
       text-align: center;
     }
-
     .card-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
       justify-content: center;
     }
-
     .card {
       background: #fff;
       padding: 25px;
@@ -128,17 +126,14 @@
       width: 300px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
-
     .card h3 {
       color: #6d28d9;
       margin-bottom: 10px;
     }
-
     ul.skills-list {
       list-style: none;
       display: flex;
@@ -147,7 +142,6 @@
       gap: 15px;
       padding: 0;
     }
-
     ul.skills-list li {
       background: #fff;
       padding: 10px 20px;
@@ -155,17 +149,14 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       transition: transform 0.2s ease;
     }
-
     ul.skills-list li:hover {
       transform: scale(1.05);
       background: #e0e7ff;
     }
-
     .contact-icons {
       text-align: center;
       margin-top: 20px;
     }
-
     .contact-icons a {
       color: #4f46e5;
       font-size: 1.8rem;
@@ -173,12 +164,10 @@
       text-decoration: none;
       transition: transform 0.3s, color 0.3s;
     }
-
     .contact-icons a:hover {
       transform: scale(1.2);
       color: #6d28d9;
     }
-
     footer {
       text-align: center;
       padding: 20px;
@@ -186,13 +175,27 @@
       background-color: #eef2ff;
       color: #4f46e5;
     }
-
+    body.dark {
+      background: #1f1f1f;
+      color: #eee;
+    }
+    body.dark nav {
+      background: #2b2b2b;
+    }
+    body.dark .card,
+    body.dark ul.skills-list li {
+      background: #333;
+      color: #eee;
+    }
+    body.dark nav a,
+    body.dark .contact-icons a {
+      color: #a5b4fc;
+    }
     @media (max-width: 600px) {
       .card-grid {
         flex-direction: column;
         align-items: center;
       }
-
       nav ul {
         flex-direction: column;
         gap: 15px;
@@ -201,7 +204,7 @@
   </style>
 </head>
 <body>
-
+  <div id="particles-js"></div>
   <nav>
     <ul>
       <li><a href="#about">About</a></li>
@@ -209,21 +212,22 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button id="darkToggle">🌙</button>
   </nav>
 
   <section class="profile-hero">
     <div class="profile-avatar">D</div>
     <h1>Deep Sawant</h1>
-    <p class="profile-title">Computer Engineering Student | DMCE C Division</p>
+    <p class="profile-title"><span id="typing-text"></span></p>
   </section>
 
   <main>
-    <section id="about">
+    <section id="about" data-aos="fade-up">
       <h2>About Me</h2>
       <p>Hello! I'm Deep Sawant, a Computer Engineering student passionate about tech and innovation. I work on web dev, automation, and real-world problem solving.</p>
     </section>
 
-    <section id="projects">
+    <section id="projects" data-aos="zoom-in-up">
       <h2>Projects</h2>
       <div class="card-grid">
         <div class="card">
@@ -237,7 +241,7 @@
       </div>
     </section>
 
-    <section id="skills" style="background: #eef2ff;">
+    <section id="skills" style="background: #eef2ff;" data-aos="fade-up">
       <h2>Skills</h2>
       <ul class="skills-list">
         <li>HTML / CSS</li>
@@ -249,7 +253,7 @@
       </ul>
     </section>
 
-    <section id="contact">
+    <section id="contact" data-aos="fade-in">
       <h2>Contact Me</h2>
       <p>Let’s connect! Reach out through email or LinkedIn.</p>
       <div class="contact-icons">
@@ -264,5 +268,24 @@
     &copy; 2025 Deep Sawant. All rights reserved.
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    var typed = new Typed("#typing-text", {
+      strings: ["Computer Engineering Student", "Web Developer", "IoT Maker", "ML Explorer"],
+      typeSpeed: 70,
+      backSpeed: 40,
+      loop: true
+    });
+
+    AOS.init();
+
+    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
+
+    document.getElementById('darkToggle').onclick = () => {
+      document.body.classList.toggle('dark');
+    };
+  </script>
 </body>
 </html>
