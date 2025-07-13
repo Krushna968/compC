@@ -18,6 +18,7 @@
       font-family: 'Poppins', sans-serif;
       color: #333;
       background: #f4f7ff;
+      transition: background 0.4s ease;
     }
     #particles-js {
       position: fixed;
@@ -89,6 +90,19 @@
       justify-content: center;
       margin: 0 auto 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-avatar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+      animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
     h1 {
       font-size: 2.5rem;
@@ -127,8 +141,8 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
     .card h3 {
       color: #6d28d9;
@@ -165,7 +179,7 @@
       transition: transform 0.3s, color 0.3s;
     }
     .contact-icons a:hover {
-      transform: scale(1.2);
+      transform: scale(1.2) rotate(5deg);
       color: #6d28d9;
     }
     footer {
