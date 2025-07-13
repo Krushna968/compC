@@ -3,163 +3,202 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio of Deep Sawant, Computer Engineering Student at DMCE.">
-  <title>Deep Sawant - Portfolio</title>
+  <meta name="description" content="Portfolio of Deep Sawant, Computer Engineering Student at DMCE. Projects, skills, and contact info.">
+  <title>Deep Sawant - DMCE Computer C</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     html {
       scroll-behavior: smooth;
     }
     body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #f5f5f5;
-      overflow-x: hidden;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      backdrop-filter: blur(10px);
+    }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
     }
     nav {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
       z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      padding: 15px 30px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
     nav ul {
-      display: flex;
       list-style: none;
+      display: flex;
       gap: 30px;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      font-weight: 500;
     }
     nav a {
-      color: #f5f5f5;
       text-decoration: none;
-      font-weight: 500;
+      color: #ffffff;
       transition: color 0.3s;
     }
     nav a:hover {
-      color: #90cdf4;
+      color: #ffd700;
     }
     #darkToggle {
-      background: #90cdf4;
-      color: #1a202c;
+      position: absolute;
+      right: 30px;
+      top: 15px;
+      background: #ffd700;
+      color: black;
       border: none;
       padding: 8px 12px;
       border-radius: 5px;
       cursor: pointer;
     }
-    .hero {
-      background: linear-gradient(135deg, #f43f5e, #f97316, #facc15);
+    .profile-hero {
+      background: linear-gradient(-45deg, #ffd700, #ff6b6b, #ffa500, #ff1493);
       background-size: 400% 400%;
-      animation: gradientMove 10s ease infinite;
-      padding: 120px 0 100px;
+      animation: gradientBG 10s ease infinite;
+      color: white;
+      padding: 120px 0 80px;
       text-align: center;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     }
-    @keyframes gradientMove {
+    @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    .profile-card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(15px);
-      border-radius: 20px;
-      padding: 40px 30px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-      color: white;
-    }
     .profile-avatar {
       width: 150px;
       height: 150px;
-      background: white;
-      color: #4f46e5;
       border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: white;
+      color: #ff1493;
+      font-weight: bold;
       font-size: 3.5rem;
-      font-weight: 800;
-      margin: auto;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    h1 {
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+    .profile-title {
+      font-size: 1.2rem;
     }
     section {
       padding: 60px 20px;
-      max-width: 1200px;
-      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      margin-bottom: 10px;
+      border-radius: 20px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
     }
     h2 {
-      font-size: 2.2rem;
+      color: #ffd700;
       text-align: center;
+      font-size: 2rem;
       margin-bottom: 30px;
-      color: #90cdf4;
     }
-    .card {
-      background: rgba(255,255,255,0.08);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      color: white;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
+    p {
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
     }
     .card-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 30px;
       justify-content: center;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 25px;
+      border-radius: 15px;
+      width: 300px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+      color: #fff;
+      margin-bottom: 10px;
     }
     ul.skills-list {
+      list-style: none;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
       justify-content: center;
-      list-style: none;
+      gap: 15px;
+      padding: 0;
     }
     ul.skills-list li {
-      background: rgba(255,255,255,0.1);
-      padding: 10px 15px;
-      border-radius: 12px;
-      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s ease;
+    }
+    ul.skills-list li:hover {
+      transform: scale(1.05);
+      background: #ffd700;
+      color: black;
+    }
+    .contact-icons {
+      text-align: center;
+      margin-top: 20px;
     }
     .contact-icons a {
-      color: #90cdf4;
-      font-size: 2rem;
-      margin: 0 10px;
-      transition: 0.3s;
+      color: #fff;
+      font-size: 1.8rem;
+      margin: 0 15px;
+      text-decoration: none;
+      transition: transform 0.3s, color 0.3s;
     }
     .contact-icons a:hover {
-      color: white;
       transform: scale(1.2);
+      color: #ffd700;
     }
     footer {
       text-align: center;
       padding: 20px;
-      font-size: 0.8rem;
-      color: #a0aec0;
+      font-size: 0.9rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
     }
-    @media(max-width: 600px) {
-      nav ul { flex-direction: column; gap: 15px; }
-      .card-grid { flex-direction: column; }
+    @media (max-width: 600px) {
+      .card-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
 <body>
+  <div id="particles-js"></div>
   <nav>
     <ul>
       <li><a href="#about">About</a></li>
@@ -167,76 +206,81 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button id="darkToggle">Toggle</button>
+    <button id="darkToggle">🌙</button>
   </nav>
 
-  <section class="hero">
-    <div class="profile-card" data-aos="fade-up">
-      <div class="profile-avatar">D</div>
-      <h1>Deep Sawant</h1>
-      <p><span id="typing"></span></p>
-    </div>
+  <section class="profile-hero">
+    <div class="profile-avatar">D</div>
+    <h1>Deep Sawant</h1>
+    <p class="profile-title"><span id="typing-text"></span></p>
   </section>
 
-  <section id="about" data-aos="fade-up">
-    <h2>About Me</h2>
-    <p style="text-align:center; max-width: 800px; margin: auto;">I'm Deep Sawant, a Computer Engineering student at DMCE with a passion for web development, IoT, and machine learning.</p>
-  </section>
+  <main>
+    <section id="about" data-aos="fade-up">
+      <h2>About Me</h2>
+      <p>Hello! I'm Deep Sawant, a Computer Engineering student passionate about tech and innovation. I work on web dev, automation, and real-world problem solving.</p>
+    </section>
 
-  <section id="projects" data-aos="fade-up">
-    <h2>Projects</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3>Home Automation</h3>
-        <p>ESP32 and Blynk based smart switching system with relays and IoT control.</p>
+    <section id="projects" data-aos="zoom-in-up">
+      <h2>Projects</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Home Automation</h3>
+          <p>ESP32-based IoT system to control lights/fans via Blynk and relays without extra power modules.</p>
+        </div>
+        <div class="card">
+          <h3>Sales Forecasting</h3>
+          <p>Used machine learning to forecast product sales trends with Python and regression models.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Sales Forecasting</h3>
-        <p>ML model to predict product sales using Python and regression techniques.</p>
+    </section>
+
+    <section id="skills" data-aos="fade-up">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li>HTML / CSS</li>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>C++</li>
+        <li>ESP32 / IoT</li>
+        <li>Git & GitHub</li>
+      </ul>
+    </section>
+
+    <section id="contact" data-aos="fade-in">
+      <h2>Contact Me</h2>
+      <p>Let’s connect! Reach out through email or social media.</p>
+      <div class="contact-icons">
+        <a href="mailto:deep.sawant@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/deepsawant/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/deepsawant" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/__deep_sawant_14" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
       </div>
-    </div>
-  </section>
-
-  <section id="skills" data-aos="fade-up">
-    <h2>Skills</h2>
-    <ul class="skills-list">
-      <li>HTML / CSS</li>
-      <li>JavaScript</li>
-      <li>Python</li>
-      <li>C++</li>
-      <li>ESP32 / IoT</li>
-      <li>Git & GitHub</li>
-    </ul>
-  </section>
-
-  <section id="contact" data-aos="fade-up">
-    <h2>Contact Me</h2>
-    <p style="text-align:center;">Let’s connect on my socials or email me.</p>
-    <div class="contact-icons" style="text-align:center;">
-      <a href="mailto:deep.sawant@example.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://linkedin.com/in/deepsawant" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/deepsawant" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://instagram.com/__deep_sawant_14" class="social-link" title="Instagram" target="_blank">
-  <i class="fab fa-instagram"></i>
-</a>
-
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     &copy; 2025 Deep Sawant. All rights reserved.
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init();
-    new Typed("#typing", {
-      strings: ["Web Developer", "IoT Engineer", "ML Explorer"],
-      typeSpeed: 60,
-      backSpeed: 30,
+    var typed = new Typed("#typing-text", {
+      strings: ["Computer Engineering Student", "Web Developer", "IoT Maker", "ML Explorer"],
+      typeSpeed: 70,
+      backSpeed: 40,
       loop: true
     });
+
+    AOS.init();
+
+    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
+
+    document.getElementById('darkToggle').onclick = () => {
+      document.body.classList.toggle('dark');
+    };
   </script>
 </body>
 </html>
