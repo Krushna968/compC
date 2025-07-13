@@ -1,35 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vedant Sawant - DMCE Computer C</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vedant Sawant | Comp C</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      border-radius: 16px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 360px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #fff;
+      color: #4f46e5;
+      font-size: 2.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: 1rem;
+    }
+
+    .quote {
+      margin-top: 15px;
+      font-size: 0.95rem;
+      font-style: italic;
+      opacity: 0.9;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-    <button class="back-button" onclick="window.history.back()">
-        <i class="fas fa-arrow-left"></i>
-    </button>
-
-    <section class="profile-hero">
-        <div class="container">
-            <div class="profile-avatar">S</div>
-            <h1 class="profile-name">Vedant Sawant</h1>
-            <p class="profile-title">Computer Engineering Student | DMCE Batch 2024</p>
-        </div>
-    </section>
-
-    <section class="profile-welcome">
-        <div class="container">
-            <div class="welcome-card">
-                <h2 class="welcome-title">Welcome to My Profile! 🎉</h2>
-                <p class="welcome-message">
-                    Hello! I'm Vedant Sawant, a passionate Computer Engineering student from DMCE's C Division.
-                    This page will showcase my journey, projects, and interests.
-                </p>
-            </div>
-        </div>
-    </section>
+  <div class="card">
+    <div class="avatar">V</div>
+    <h1>Vedant Sawant</h1>
+    <p>Roll No: 27</p>
+    <p>Division: Computer C</p>
+    <p>College: DMCE</p>
+    <p class="quote">"Learn. Code. Repeat."</p>
+  </div>
 </body>
 </html>
+
