@@ -16,9 +16,13 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      color: #fff;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      backdrop-filter: blur(10px);
+      color: #333;
+      background: #f4f7ff;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    body.dark {
+      background: #121212;
+      color: #eee;
     }
     #particles-js {
       position: fixed;
@@ -29,13 +33,16 @@
       left: 0;
     }
     nav {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.85);
       padding: 15px 30px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    body.dark nav {
+      background: rgba(20, 20, 20, 0.85);
     }
     nav ul {
       list-style: none;
@@ -48,43 +55,38 @@
     }
     nav a {
       text-decoration: none;
-      color: #ffffff;
+      color: #4f46e5;
       transition: color 0.3s;
     }
+    body.dark nav a {
+      color: #a5b4fc;
+    }
     nav a:hover {
-      color: #ffd700;
+      color: #6d28d9;
     }
     #darkToggle {
       position: absolute;
       right: 30px;
       top: 15px;
-      background: #ffd700;
-      color: black;
+      background: #4f46e5;
+      color: white;
       border: none;
       padding: 8px 12px;
       border-radius: 5px;
       cursor: pointer;
     }
     .profile-hero {
-      background: linear-gradient(-45deg, #ffd700, #ff6b6b, #ffa500, #ff1493);
-      background-size: 400% 400%;
-      animation: gradientBG 10s ease infinite;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
       color: white;
       padding: 120px 0 80px;
       text-align: center;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
     }
     .profile-avatar {
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      background: white;
-      color: #ff1493;
+      background: linear-gradient(135deg, #ff6b6b, #ffcc70);
       font-weight: bold;
       font-size: 3.5rem;
       display: flex;
@@ -92,28 +94,25 @@
       justify-content: center;
       margin: 0 auto 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      color: #fff;
     }
     h1 {
       font-size: 2.5rem;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
     }
     .profile-title {
       font-size: 1.2rem;
     }
     section {
       padding: 60px 20px;
-      background: rgba(255, 255, 255, 0.05);
-      margin-bottom: 10px;
-      border-radius: 20px;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
     }
     h2 {
-      color: #ffd700;
+      color: #4f46e5;
       text-align: center;
       font-size: 2rem;
       margin-bottom: 30px;
+    }
+    body.dark h2 {
+      color: #a5b4fc;
     }
     p {
       line-height: 1.8;
@@ -132,6 +131,7 @@
       backdrop-filter: blur(12px);
       padding: 25px;
       border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       width: 300px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -140,8 +140,10 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
     .card h3 {
-      color: #fff;
-      margin-bottom: 10px;
+      color: #6d28d9;
+    }
+    body.dark .card h3 {
+      color: #a78bfa;
     }
     ul.skills-list {
       list-style: none;
@@ -160,15 +162,13 @@
     }
     ul.skills-list li:hover {
       transform: scale(1.05);
-      background: #ffd700;
-      color: black;
     }
     .contact-icons {
       text-align: center;
       margin-top: 20px;
     }
     .contact-icons a {
-      color: #fff;
+      color: #4f46e5;
       font-size: 1.8rem;
       margin: 0 15px;
       text-decoration: none;
@@ -176,24 +176,21 @@
     }
     .contact-icons a:hover {
       transform: scale(1.2);
-      color: #ffd700;
+      color: #6d28d9;
+    }
+    body.dark .contact-icons a {
+      color: #a5b4fc;
     }
     footer {
       text-align: center;
       padding: 20px;
       font-size: 0.9rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: #fff;
+      background-color: #eef2ff;
+      color: #4f46e5;
     }
-    @media (max-width: 600px) {
-      .card-grid {
-        flex-direction: column;
-        align-items: center;
-      }
-      nav ul {
-        flex-direction: column;
-        gap: 15px;
-      }
+    body.dark footer {
+      background: #1a1a1a;
+      color: #a5b4fc;
     }
   </style>
 </head>
@@ -216,12 +213,12 @@
   </section>
 
   <main>
-    <section id="about" data-aos="fade-up">
+    <section id="about">
       <h2>About Me</h2>
       <p>Hello! I'm Deep Sawant, a Computer Engineering student passionate about tech and innovation. I work on web dev, automation, and real-world problem solving.</p>
     </section>
 
-    <section id="projects" data-aos="zoom-in-up">
+    <section id="projects">
       <h2>Projects</h2>
       <div class="card-grid">
         <div class="card">
@@ -235,7 +232,7 @@
       </div>
     </section>
 
-    <section id="skills" data-aos="fade-up">
+    <section id="skills">
       <h2>Skills</h2>
       <ul class="skills-list">
         <li>HTML / CSS</li>
@@ -247,14 +244,14 @@
       </ul>
     </section>
 
-    <section id="contact" data-aos="fade-in">
+    <section id="contact">
       <h2>Contact Me</h2>
-      <p>Let’s connect! Reach out through email or social media.</p>
+      <p>Let’s connect! Reach out through email or LinkedIn.</p>
       <div class="contact-icons">
-        <a href="mailto:deep.sawant@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.linkedin.com/in/deepsawant/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/deepsawant" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://instagram.com/__deep_sawant_14" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:deep.sawant@example.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/deepsawant/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/deepsawant" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/__deep_sawant_14" target="_blank"><i class="fab fa-instagram"></i></a>
       </div>
     </section>
   </main>
@@ -265,7 +262,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     var typed = new Typed("#typing-text", {
       strings: ["Computer Engineering Student", "Web Developer", "IoT Maker", "ML Explorer"],
@@ -273,8 +269,6 @@
       backSpeed: 40,
       loop: true
     });
-
-    AOS.init();
 
     particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
 
