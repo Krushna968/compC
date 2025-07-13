@@ -1,67 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio of Deep Sawant, Computer Engineering Student at DMCE. Projects, skills, and contact info.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Deep Sawant - DMCE Computer C</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <style>
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+    }
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light {
       background: #f4f7ff;
-      overflow-x: hidden;
+      color: #333;
     }
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+
+    body.dark {
+      background: #0b0f1a;
+      color: #e0e0e0;
+    }
+
+    nav {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
       top: 0;
-      left: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
     }
-    .code-floating {
-      position: fixed;
-      top: 20%;
-      left: 5%;
-      font-family: monospace;
-      color: #00ffcc;
-      font-size: 1rem;
-      opacity: 0.08;
-      z-index: -1;
-      animation: floatCode 12s ease-in-out infinite;
-      white-space: pre;
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+      font-weight: 500;
     }
-    @keyframes floatCode {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
+
+    nav a {
+      text-decoration: none;
+      color: #4f46e5;
     }
-    nav { background: #fff; padding: 15px 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
-    nav ul { list-style: none; display: flex; gap: 30px; justify-content: center; margin: 0; padding: 0; font-weight: 500; }
-    nav a { text-decoration: none; color: #4f46e5; transition: color 0.3s; }
-    nav a:hover { color: #6d28d9; }
-    #darkToggle { position: absolute; right: 30px; top: 15px; background: #4f46e5; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
+
+    .toggle-theme {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
     .profile-hero {
-      background: linear-gradient(-45deg, #4f46e5, #6d28d9, #8b5cf6, #6366f1);
-      background-size: 400% 400%;
-      animation: gradientBG 10s ease infinite;
+      background: linear-gradient(135deg, #4f46e5 0%, #6d28d9 100%);
       color: white;
       padding: 120px 0 80px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+
+    .tech-deco {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      width: 60px;
+      opacity: 0.3;
+      animation: spin 10s linear infinite;
     }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
     .profile-avatar {
       width: 150px;
       height: 150px;
@@ -75,37 +103,115 @@
       justify-content: center;
       margin: 0 auto 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: pop 1s ease-out;
     }
-    h1 { font-size: 2.5rem; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); }
-    .profile-title { font-size: 1.2rem; }
-    section { padding: 60px 20px; }
-    h2 { color: #4f46e5; text-align: center; font-size: 2rem; margin-bottom: 30px; }
-    p { line-height: 1.8; max-width: 700px; margin: 0 auto; text-align: center; }
-    .card-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
-    .card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px); padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); width: 300px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-    .card h3 { color: #6d28d9; margin-bottom: 10px; }
-    ul.skills-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 0; }
-    ul.skills-list li { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: transform 0.2s ease; }
-    ul.skills-list li:hover { transform: scale(1.05); background: #e0e7ff; }
-    .contact-icons { text-align: center; margin-top: 20px; }
-    .contact-icons a { color: #4f46e5; font-size: 1.8rem; margin: 0 15px; text-decoration: none; transition: transform 0.3s, color 0.3s; }
-    .contact-icons a:hover { transform: scale(1.2); color: #6d28d9; }
-    footer { text-align: center; padding: 20px; font-size: 0.9rem; background-color: #eef2ff; color: #4f46e5; }
-    @media (max-width: 600px) {
-      .card-grid { flex-direction: column; align-items: center; }
-      nav ul { flex-direction: column; gap: 15px; }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .profile-title {
+      font-size: 1.2rem;
+    }
+
+    .cursor {
+      display: inline-block;
+      margin-left: 2px;
+      width: 1px;
+      background: white;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    h2 {
+      color: #4f46e5;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    p {
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      width: 300px;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px) scale(1.03);
+    }
+
+    .card h3 {
+      color: #6d28d9;
+      margin-bottom: 10px;
+    }
+
+    ul.skills-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 0;
+    }
+
+    ul.skills-list li {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 10px 20px;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .contact-icons a {
+      color: #4f46e5;
+      font-size: 1.5rem;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .dark nav, .dark .card, .dark ul.skills-list li {
+      background: rgba(30, 30, 30, 0.6);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .dark nav a, .dark .contact-icons a {
+      color: #90cdf4;
+    }
+
+    .dark h2, .dark .card h3 {
+      color: #a78bfa;
     }
   </style>
 </head>
-<body>
-  <div id="particles-js"></div>
-  <div class="code-floating">
-  console.log("Hello, World!");
-  const tech = ["HTML", "CSS", "JS"];
-  let i = 0;
-  setInterval(() => console.log(tech[i++ % tech.length]), 1000);
-  </div>
+<body class="light">
   <nav>
     <ul>
       <li><a href="#about">About</a></li>
@@ -113,82 +219,82 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button id="darkToggle">🌙</button>
+    <button class="toggle-theme" onclick="toggleTheme()">Toggle Theme</button>
   </nav>
 
   <section class="profile-hero">
+    <img src="https://cdn-icons-png.flaticon.com/512/4144/4144713.png" class="tech-deco" />
     <div class="profile-avatar">D</div>
     <h1>Deep Sawant</h1>
-    <p class="profile-title"><span id="typing-text"></span></p>
-    <lottie-player src="https://lottie.host/6b798903-8fc4-4e62-823f-01f75c8760ae/wrmZyhhZ1M.json" background="transparent" speed="1" style="width: 200px; height: 200px; margin: 20px auto;" loop autoplay></lottie-player>
+    <p class="profile-title">
+      <span id="typedText"></span><span class="cursor">|</span>
+    </p>
   </section>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Hello! I'm Deep Sawant, a Computer Engineering student passionate about tech and innovation. I work on web dev, automation, and real-world problem solving.</p>
-    </section>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I'm Deep Sawant, a Computer Engineering student passionate about tech and innovation. I work on web dev, automation, and real-world problem solving.</p>
+  </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Home Automation</h3>
-          <p>ESP32-based IoT system to control lights/fans via Blynk and relays without extra power modules.</p>
-        </div>
-        <div class="card">
-          <h3>Sales Forecasting</h3>
-          <p>Used machine learning to forecast product sales trends with Python and regression models.</p>
-        </div>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Home Automation</h3>
+        <p>ESP32-based IoT system to control lights/fans via Blynk and relays without extra power modules.</p>
       </div>
-    </section>
-
-    <section id="skills">
-      <h2>Skills</h2>
-      <ul class="skills-list">
-        <li>HTML / CSS</li>
-        <li>JavaScript</li>
-        <li>Python</li>
-        <li>C++</li>
-        <li>ESP32 / IoT</li>
-        <li>Git & GitHub</li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <p>Let’s connect! Reach out through email or social handles below.</p>
-      <div class="contact-icons">
-        <a href="mailto:deep.sawant@example.com"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.linkedin.com/in/deepsawant/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/deepsawant" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://instagram.com/__deep_sawant_14" target="_blank"><i class="fab fa-instagram"></i></a>
+      <div class="card">
+        <h3>Sales Forecasting</h3>
+        <p>Used machine learning to forecast product sales trends with Python and regression models.</p>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    &copy; 2025 Deep Sawant. All rights reserved.
-  </footer>
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li>HTML / CSS</li>
+      <li>JavaScript</li>
+      <li>Python</li>
+      <li>C++</li>
+      <li>ESP32 / IoT</li>
+      <li>Git & GitHub</li>
+    </ul>
+  </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Let’s connect! Reach out through email or LinkedIn.</p>
+    <div class="contact-icons">
+      <a href="mailto:deepsawant2418@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/DeepSawant" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </section>
+
   <script>
-    var typed = new Typed("#typing-text", {
-      strings: ["Computer Engineering Student", "Web Developer", "IoT Maker", "ML Explorer"],
-      typeSpeed: 70,
-      backSpeed: 40,
-      loop: true
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('dark');
+      body.classList.toggle('light');
+    }
+
+    // Typing animation
+    document.addEventListener("DOMContentLoaded", () => {
+      const text = "Computer Engineering Student | DMCE C Division";
+      const typedText = document.getElementById("typedText");
+      let index = 0;
+
+      function type() {
+        if (index < text.length) {
+          typedText.textContent += text.charAt(index);
+          index++;
+          setTimeout(type, 50); // typing speed
+        }
+      }
+
+      type();
     });
-
-    AOS.init();
-
-    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
-
-    document.getElementById('darkToggle').onclick = () => {
-      document.body.classList.toggle('dark');
-    };
   </script>
 </body>
 </html>
