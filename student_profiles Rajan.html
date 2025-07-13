@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rajan | DMCE C Division</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f7ff;
+      color: #333;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1549921296-3a6b56c5b7df?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(25, 24, 51, 0.6);
+    }
+
+    .hero-content {
+      position: relative;
+      color: #fff;
+      z-index: 1;
+      padding: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .card {
+      background: #fff;
+      max-width: 800px;
+      margin: -100px auto 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      padding: 50px 30px;
+      text-align: center;
+    }
+
+    .card h2 {
+      color: #4f46e5;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .socials {
+      background: #fff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .socials h2 {
+      font-size: 2rem;
+      color: #4f46e5;
+      margin-bottom: 30px;
+    }
+
+    .icons a {
+      margin: 0 15px;
+      font-size: 2.5rem;
+      color: #4f46e5;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .icons a:hover {
+      transform: scale(1.2);
+    }
+
+    .icons a:nth-child(1):hover { color: #0e76a8; } /* LinkedIn */
+    .icons a:nth-child(2):hover { color: #000; }     /* GitHub */
+    .icons a:nth-child(3):hover { color: #e1306c; }  /* Instagram */
+
+    footer {
+      background: #4f46e5;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media(max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .card {
+        margin: -80px 20px 30px;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Rajan Shukla</h1>
+      <p>Computer Engineering Student | DMCE Batch 2024</p>
+    </div>
+  </section>
+
+  <!-- About Card -->
+  <section class="card">
+    <h2>Welcome to My Profile! 🎉</h2>
+    <p>
+      Hi, I'm Rajan — a passionate Computer Engineering student from DMCE C Division.
+      I’m building my career in software development and love working on real-world tech projects.
+      This profile showcases who I am and what I’ve been working on.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="socials">
+    <h2>Connect with Me</h2>
+    <div class="icons">
+      <a href="https://www.linkedin.com/in/rajan-shukla-b02467337?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/rajan-rs-dev" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.instagram.com/rajan_08here/profilecard/?igsh=MW1kOHB4bGowaGg3Ng==" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Rajan Shukla | DMCE C Division | All rights reserved.
+  </footer>
+
+</body>
+</html>
