@@ -9,177 +9,103 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
-    :root {
-      --main-bg: rgba(255, 255, 255, 0.15);
-      --text-color: #222;
-      --card-bg: rgba(255, 255, 255, 0.25);
-    }
-    body.dark {
-      --main-bg: rgba(0, 0, 0, 0.3);
-      --text-color: #eee;
-      --card-bg: rgba(50, 50, 50, 0.5);
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    html { scroll-behavior: smooth; }
     body {
+      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f4f7ff, #eef2ff);
-      color: var(--text-color);
-      transition: background 0.5s ease, color 0.5s ease;
-    }
-    body.dark {
-      background: linear-gradient(135deg, #1f1f1f, #111);
+      color: #333;
+      background: #f4f7ff;
+      overflow-x: hidden;
     }
     #particles-js {
       position: fixed;
       width: 100%;
       height: 100%;
       z-index: -1;
-    }
-    nav {
-      position: sticky;
       top: 0;
-      padding: 15px 30px;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      z-index: 1000;
+      left: 0;
     }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
+    .code-floating {
+      position: fixed;
+      top: 20%;
+      left: 5%;
+      font-family: monospace;
+      color: #00ffcc;
+      font-size: 1rem;
+      opacity: 0.08;
+      z-index: -1;
+      animation: floatCode 12s ease-in-out infinite;
+      white-space: pre;
     }
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: 500;
+    @keyframes floatCode {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
     }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    #darkToggle {
-      padding: 6px 12px;
-      background: #4f46e5;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+    nav { background: #fff; padding: 15px 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+    nav ul { list-style: none; display: flex; gap: 30px; justify-content: center; margin: 0; padding: 0; font-weight: 500; }
+    nav a { text-decoration: none; color: #4f46e5; transition: color 0.3s; }
+    nav a:hover { color: #6d28d9; }
+    #darkToggle { position: absolute; right: 30px; top: 15px; background: #4f46e5; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
     .profile-hero {
-      padding: 100px 20px 60px;
+      background: linear-gradient(-45deg, #4f46e5, #6d28d9, #8b5cf6, #6366f1);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: white;
+      padding: 120px 0 80px;
       text-align: center;
     }
-    .profile-card {
-      display: inline-block;
-      background: var(--card-bg);
-      backdrop-filter: blur(20px);
-      padding: 50px;
-      border-radius: 25px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-      color: var(--text-color);
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     .profile-avatar {
-      background: linear-gradient(135deg, #ffd700, #ff6b6b);
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
+      background: white;
+      color: #4f46e5;
+      font-weight: bold;
+      font-size: 3.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
-      color: #fff;
       margin: 0 auto 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    .profile-title {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-    section {
-      padding: 60px 20px;
-    }
-    h2 {
-      text-align: center;
-      color: var(--text-color);
-      font-size: 2rem;
-      margin-bottom: 30px;
-    }
-    p {
-      max-width: 700px;
-      margin: 0 auto 20px;
-      line-height: 1.7;
-    }
-    .card-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-    }
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(15px);
-      padding: 30px;
-      border-radius: 20px;
-      width: 300px;
-      transition: 0.3s ease;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    }
-    .card:hover {
-      transform: translateY(-8px);
-    }
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-    }
-    .skills-list li {
-      list-style: none;
-      padding: 12px 20px;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border-radius: 10px;
-      transition: 0.3s ease;
-    }
-    .skills-list li:hover {
-      background: #dbeafe;
-    }
-    .contact-icons {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .contact-icons a {
-      color: var(--text-color);
-      font-size: 1.8rem;
-      margin: 0 12px;
-      transition: 0.3s ease;
-    }
-    .contact-icons a:hover {
-      transform: scale(1.2);
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: var(--card-bg);
-      color: var(--text-color);
-      font-size: 0.9rem;
+    h1 { font-size: 2.5rem; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); }
+    .profile-title { font-size: 1.2rem; }
+    section { padding: 60px 20px; }
+    h2 { color: #4f46e5; text-align: center; font-size: 2rem; margin-bottom: 30px; }
+    p { line-height: 1.8; max-width: 700px; margin: 0 auto; text-align: center; }
+    .card-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+    .card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px); padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); width: 300px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .card h3 { color: #6d28d9; margin-bottom: 10px; }
+    ul.skills-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 0; }
+    ul.skills-list li { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: transform 0.2s ease; }
+    ul.skills-list li:hover { transform: scale(1.05); background: #e0e7ff; }
+    .contact-icons { text-align: center; margin-top: 20px; }
+    .contact-icons a { color: #4f46e5; font-size: 1.8rem; margin: 0 15px; text-decoration: none; transition: transform 0.3s, color 0.3s; }
+    .contact-icons a:hover { transform: scale(1.2); color: #6d28d9; }
+    footer { text-align: center; padding: 20px; font-size: 0.9rem; background-color: #eef2ff; color: #4f46e5; }
+    @media (max-width: 600px) {
+      .card-grid { flex-direction: column; align-items: center; }
+      nav ul { flex-direction: column; gap: 15px; }
     }
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
+  <div class="code-floating">
+  console.log("Hello, World!");
+  const tech = ["HTML", "CSS", "JS"];
+  let i = 0;
+  setInterval(() => console.log(tech[i++ % tech.length]), 1000);
+  </div>
   <nav>
     <ul>
       <li><a href="#about">About</a></li>
@@ -191,17 +117,16 @@
   </nav>
 
   <section class="profile-hero">
-    <div class="profile-card">
-      <div class="profile-avatar">D</div>
-      <h1>Deep Sawant</h1>
-      <p class="profile-title"><span id="typing-text"></span></p>
-    </div>
+    <div class="profile-avatar">D</div>
+    <h1>Deep Sawant</h1>
+    <p class="profile-title"><span id="typing-text"></span></p>
+    <lottie-player src="https://lottie.host/6b798903-8fc4-4e62-823f-01f75c8760ae/wrmZyhhZ1M.json" background="transparent" speed="1" style="width: 200px; height: 200px; margin: 20px auto;" loop autoplay></lottie-player>
   </section>
 
   <main>
     <section id="about">
       <h2>About Me</h2>
-      <p>Hi! I'm Deep Sawant, a Computer Engineering student passionate about tech and real-world problem solving. I enjoy working with web tech, IoT, and automation.</p>
+      <p>Hello! I'm Deep Sawant, a Computer Engineering student passionate about tech and innovation. I work on web dev, automation, and real-world problem solving.</p>
     </section>
 
     <section id="projects">
@@ -209,11 +134,11 @@
       <div class="card-grid">
         <div class="card">
           <h3>Home Automation</h3>
-          <p>ESP32-based IoT system to control appliances via Blynk, built for practical home integration.</p>
+          <p>ESP32-based IoT system to control lights/fans via Blynk and relays without extra power modules.</p>
         </div>
         <div class="card">
           <h3>Sales Forecasting</h3>
-          <p>Machine learning project to predict product sales trends using regression models.</p>
+          <p>Used machine learning to forecast product sales trends with Python and regression models.</p>
         </div>
       </div>
     </section>
@@ -221,23 +146,23 @@
     <section id="skills">
       <h2>Skills</h2>
       <ul class="skills-list">
-        <li>HTML/CSS</li>
+        <li>HTML / CSS</li>
         <li>JavaScript</li>
         <li>Python</li>
         <li>C++</li>
-        <li>ESP32 & IoT</li>
+        <li>ESP32 / IoT</li>
         <li>Git & GitHub</li>
       </ul>
     </section>
 
     <section id="contact">
-      <h2>Contact</h2>
-      <p>Feel free to reach out!</p>
+      <h2>Contact Me</h2>
+      <p>Let’s connect! Reach out through email or social handles below.</p>
       <div class="contact-icons">
-        <a href="mailto:deep.sawant@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.linkedin.com/in/deepsawant/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/deepsawant" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://instagram.com/__deep_sawant_14" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:deep.sawant@example.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/deepsawant/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/deepsawant" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/__deep_sawant_14" target="_blank"><i class="fab fa-instagram"></i></a>
       </div>
     </section>
   </main>
@@ -251,13 +176,14 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     var typed = new Typed("#typing-text", {
-      strings: ["Computer Engineering Student", "Web Developer", "IoT Enthusiast", "ML Explorer"],
+      strings: ["Computer Engineering Student", "Web Developer", "IoT Maker", "ML Explorer"],
       typeSpeed: 70,
       backSpeed: 40,
       loop: true
     });
 
     AOS.init();
+
     particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
 
     document.getElementById('darkToggle').onclick = () => {
