@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viraj Pise - DMCE Computer Engineering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #667eea;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: bold;
+            margin: 0 auto 30px;
+            color: white;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-name {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-title {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .profile-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .main-content {
+            background: white;
+            margin: -40px 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .welcome-section {
+            padding: 50px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .welcome-message {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .social-link.linkedin { background: #0077b5; }
+        .social-link.github { background: #333; }
+        .social-link.email { background: #ea4335; }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px 40px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card-content {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-name {
+                font-size: 2rem;
+            }
+            
+            .profile-title {
+                font-size: 1.1rem;
+            }
+            
+            .info-grid {
+                padding: 30px 20px;
+            }
+            
+            .welcome-section {
+                padding: 30px 20px;
+            }
+            
+            .main-content {
+                margin: -20px 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <section class="profile-hero">
+        <div class="container">
+            <div class="profile-avatar">V</div>
+            <h1 class="profile-name">Viraj Pise</h1>
+            <p class="profile-title">Computer Engineering Student | DMCE Batch 2024</p>
+            <div class="profile-badges">
+                <span class="badge"><i class="fas fa-code"></i> Developer</span>
+                <span class="badge"><i class="fas fa-graduation-cap"></i> Student</span>
+                <span class="badge"><i class="fas fa-lightbulb"></i> Innovator</span>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="welcome-section">
+            <h2 class="welcome-title">Welcome to My Profile! 🎉</h2>
+            <p class="welcome-message">
+                Hello! I'm Viraj Pise, a passionate Computer Engineering student from DMCE's C Division. 
+                I'm dedicated to learning cutting-edge technologies and building innovative solutions 
+                that make a difference in the world.
+            </p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link linkedin"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link github"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </section>
+
+        <section class="info-grid">
+            <div class="info-card">
+                <div class="card-icon"><i class="fas fa-user-graduate"></i></div>
+                <h3 class="card-title">About Me</h3>
+                <div class="card-content">
+                    <p>Currently pursuing Computer Engineering at DMCE, I'm passionate about technology and innovation. I love exploring new programming languages, working on challenging projects, and collaborating with fellow developers.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">2024</span>
+                            <span class="stat-label">Graduation Year</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">C</span>
+                            <span class="stat-label">Division</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="card-icon"><i class="fas fa-code"></i></div>
+                <h3 class="card-title">Technical Skills</h3>
+                <div class="card-content">
+                    <p>I'm constantly expanding my technical expertise across various domains of computer science and software development.</p>
+                    <div class="skills-list">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
+                <h3 class="card-title">Projects & Interests</h3>
+                <div class="card-content">
+                    <p>I enjoy working on diverse projects that challenge me to learn new technologies and solve real-world problems.</p>
+                    <ul style="margin-top: 15px; color: #666;">
+                        <li style="margin-bottom: 8px;">🌐 Web Development</li>
+                        <li style="margin-bottom: 8px;">📱 Mobile Applications</li>
+                        <li style="margin-bottom: 8px;">🤖 Machine Learning</li>
+                        <li style="margin-bottom: 8px;">🔒 Cybersecurity</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                <h3 class="card-title">Goals & Aspirations</h3>
+                <div class="card-content">
+                    <p>I'm focused on building a strong foundation in computer engineering while staying updated with the latest industry trends and technologies.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">Learning</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Dedication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
