@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rajan | DMCE C  Division</title>
+  <title>Rajan | DMCE C Division</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
   <style>
@@ -16,8 +15,9 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f4f7ff;
+      background: linear-gradient(to right, #dbeafe, #f0abfc, #e0f2fe);
       color: #333;
+      min-height: 100vh;
     }
 
     .hero {
@@ -28,6 +28,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      overflow: hidden;
     }
 
     .overlay {
@@ -36,60 +37,69 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(25, 24, 51, 0.6);
+      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .hero-content {
       position: relative;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
       color: #fff;
       z-index: 1;
-      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
     }
 
     .hero-content h1 {
-      font-size: 3.5rem;
+      font-size: 3rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      color: #ffffff;
+      text-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5);
     }
 
     .hero-content p {
       font-size: 1.2rem;
-      opacity: 1.0;
+      color: #e0e0e0;
     }
 
     .card {
-      background: #fff;
-      max-width: 800px;
-      margin: -100px auto 40px;
+      max-width: 850px;
+      margin: -80px auto 50px;
+      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-      padding: 50px 30px;
+      backdrop-filter: blur(15px);
       text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      color: #222;
     }
 
     .card h2 {
-      color: #4f46e5;
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 20px;
+      color: #4f46e5;
     }
 
     .card p {
       font-size: 1.1rem;
-      line-height: 1.8;
-      color: #444;
+      line-height: 1.7;
+      color: #333;
     }
 
     .socials {
-      background: #fff;
-      padding: 50px 20px;
+      padding: 60px 20px;
       text-align: center;
     }
 
     .socials h2 {
       font-size: 2rem;
       color: #4f46e5;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     .icons a {
@@ -100,7 +110,7 @@
     }
 
     .icons a:hover {
-      transform: scale(1.2);
+      transform: scale(1.3);
     }
 
     .icons a:nth-child(1):hover { color: #0e76a8; } /* LinkedIn */
@@ -108,8 +118,8 @@
     .icons a:nth-child(3):hover { color: #e1306c; }  /* Instagram */
 
     footer {
-      background: #4f46e5;
-      color: White;
+      background: linear-gradient(to right, #4f46e5, #7c3aed);
+      color: white;
       padding: 20px;
       text-align: center;
       font-size: 0.9rem;
@@ -121,8 +131,13 @@
       }
 
       .card {
-        margin: -80px 20px 30px;
-        padding: 30px 20px;
+        margin: -60px 20px 30px;
+        padding: 25px 15px;
+      }
+
+      .icons a {
+        font-size: 2rem;
+        margin: 0 10px;
       }
     }
   </style>
@@ -138,7 +153,7 @@
     </div>
   </section>
 
-  <!-- About Card -->
+  <!-- About Section -->
   <section class="card">
     <h2>Welcome to My Profile! 🎉</h2>
     <p>
@@ -148,13 +163,13 @@
     </p>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Social Media Section -->
   <section class="socials">
     <h2>Connect with Me</h2>
     <div class="icons">
-      <a href="https://www.linkedin.com/in/rajan-shukla-b02467337?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.linkedin.com/in/rajan-shukla-b02467337" target="_blank"><i class="fab fa-linkedin"></i></a>
       <a href="https://github.com/rajan-rs-dev" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.instagram.com/rajan_08here/profilecard/?igsh=MW1kOHB4bGowaGg3Ng==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.instagram.com/rajan_08here" target="_blank"><i class="fab fa-instagram"></i></a>
     </div>
   </section>
 
