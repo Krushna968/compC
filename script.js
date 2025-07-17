@@ -10,7 +10,7 @@ hamburger.addEventListener('click', () => {
 // Close mobile menu when clicking a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+        navLinks.classList.remove('active');https://compc-chatbot-server.onrender.com/chat
         hamburger.classList.remove('active');
     });
 });
@@ -34,86 +34,49 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Chatbot functionality
-document.getElementById('send-button').addEventListener('click', function () {
-    const input = document.getElementById('user-input');
-    const message = input.value.trim();
-
-    if (message !== '') {
-        // Add user's message to the chatbot window
-        const userMsg = document.createElement('div');
-        userMsg.className = 'bot-message';
-        userMsg.style.alignSelf = 'flex-end';
-        userMsg.style.backgroundColor = '#dcf8c6'; // WhatsApp green
-        userMsg.innerText = message;
-        document.getElementById('chatbot-messages').appendChild(userMsg);
-
-        // Open WhatsApp link
-        const whatsappURL = `https://wa.me/919321609760?text=${encodeURIComponent(message)}`;
-        window.open(whatsappURL, '_blank');
-
-        input.value = '';
-    }
-});
-
-
-// Simple chatbot responses
-const botResponses = {
-    "hello": "Hello there! How can I help you today?",
-    "hi": "Hi! What can I do for you?",
-    "how are you": "I'm just a bot, but I'm functioning well! How about you?",
-    "students": "You can find all our batchmates on the Students page. Click the link in the navigation!",
-    "projects": "Many students are working on interesting projects. Check their individual pages for details.",
-    "college": "Datta Meghe College of Engineering is our alma mater. What would you like to know about it?",
-    "help": "I can provide information about our batch, students, and college. Just ask me anything!",
-    "default": "I'm not sure I understand. Could you rephrase that?"
-};
+const sendButton = document.getElementById("send-button");
+const userInput = document.getElementById("user-input");
+const chatbotMessages = document.getElementById("chatbot-messages");
 
 function addUserMessage(message) {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('user-message');
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("user-message");
     messageDiv.textContent = message;
     chatbotMessages.appendChild(messageDiv);
-    userInput.value = '';
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
 function addBotMessage(message) {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('bot-message');
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("bot-message");
     messageDiv.textContent = message;
     chatbotMessages.appendChild(messageDiv);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
-function processUserInput() {
-    const message = userInput.value.trim().toLowerCase();
-    if (message === '') return;
-    
+function sendMessage() {
+    const message = userInput.value.trim();
+    if (message === "") return;
+
     addUserMessage(message);
-    
-    // Simple response logic
-    let response = botResponses.default;
-    for (const key in botResponses) {
-        if (message.includes(key)) {
-            response = botResponses[key];
-            break;
-        }
-    }
-    
-    // Simulate typing delay
-    setTimeout(() => {
-        addBotMessage(response);
-    }, 800);
+    userInput.value = "";
+
+    fetch("", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+    })
+    .then(res => res.json())
+    .then(data => {
+        addBotMessage(data.reply);
+    })
+    .catch(err => {
+        addBotMessage("Oops! Something went wrong.");
+        console.error(err);
+    });
 }
 
-sendButton.addEventListener('click', processUserInput);
-userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        processUserInput();
-    }
+sendButton.addEventListener("click", sendMessage);
+userInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
 });
-
-// Add some initial bot messages to guide users
-setTimeout(() => {
-    addBotMessage("You can ask me about our batch, students, or college.");
-}, 2000);
