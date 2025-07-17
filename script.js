@@ -7,22 +7,19 @@ hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
 });
 
-// Close mobile menu when clicking a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        navLinks.classList.remove('active');https://compc-chatbot-server.onrender.com/chat
+        navLinks.classList.remove('active');
         hamburger.classList.remove('active');
     });
 });
 
-// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
-        
+
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             window.scrollTo({
@@ -61,7 +58,7 @@ function sendMessage() {
     addUserMessage(message);
     userInput.value = "";
 
-    fetch("", {
+    fetch("https://compc.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message })
