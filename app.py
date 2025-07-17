@@ -1,32 +1,29 @@
-import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import openai
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
 
 app = Flask(__name__)
 CORS(app)
 
-# Use new OpenAI client syntax for v1.0+
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
+model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-medium")
 
-@app.route("/", methods=["GET"])
-def home():
-    return "Chatbot server is running!"
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_input = request.json.get("message")
+    input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors='pt')
+    
+    chat_history_ids = model.generate(
+        input_ids,
+        max_length=1000,
+        pad_token_id=tokenizer.eos_token_id
+    )
 
-
-    try:
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "user", "content": user_message}
-            ]
-        )
-        reply = response.choices[0].message.content
-        return jsonify({"reply": reply})
-
-    except Exception as e:
-        return jsonify({"reply": f"Error: {str(e)}"}), 500
+    response = tokenizer.decode(chat_history_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
+    return jsonify({"reply": response})
 
 if __name__ == "__main__":
+    import os
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
