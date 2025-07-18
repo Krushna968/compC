@@ -61,7 +61,7 @@ function sendMessage() {
     addUserMessage(message);
     userInput.value = "";
 
-    fetch("", {
+    fetch("https://compc-chatbot-server.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message })
