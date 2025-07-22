@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Comp C Java Compiler</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    #editor {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #output {
+      background: #222;
+      color: #0f0;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 15px;
+      font-family: monospace;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 16px;
+      background-color: #3498db;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💻 Comp C Java Compiler</h1>
+  <div id="editor">// Write your Java code here
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, Comp C!");
+    }
+}</div>
+
+  <button onclick="runCode()">▶️ Run Code</button>
+
+  <pre id="output">Output will appear here...</pre>
+
+  <!-- Ace Code Editor -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <script>
+    const editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/java");
+
+    async function runCode() {
+      const code = editor.getValue();
+      document.getElementById("output").innerText = "⏳ Running...";
+
+      const response = await fetch("https://YOUR-BACKEND-URL/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code })
+      });
+
+      const data = await response.json();
+      document.getElementById("output").innerText = data.output || "❌ Error occurred.";
+    }
+  </script>
+
+</body>
+</html>
