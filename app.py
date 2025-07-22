@@ -1,29 +1,72 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
+from fastapi import FastAPI, Request, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+import requests
+import re
 
-app = Flask(__name__)
-CORS(app)
+app = FastAPI()
 
-tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
-model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-medium")
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.route("/chat", methods=["POST"])
-def chat():
-    user_input = request.json.get("message")
-    input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors='pt')
-    
-    chat_history_ids = model.generate(
-        input_ids,
-        max_length=1000,
-        pad_token_id=tokenizer.eos_token_id
-    )
+JUDGE0_URL = "https://judge0-ce.p.rapidapi.com/submissions"
+JUDGE0_HEADERS = {
+    "X-RapidAPI-Key": "YOUR_API_KEY",  # Replace with your actual RapidAPI key
+    "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+    "Content-Type": "application/json"
+}
 
-    response = tokenizer.decode(chat_history_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
-    return jsonify({"reply": response})
+def extract_main_class(code: str) -> str:
+    """Extract the public class name from Java code"""
+    match = re.search(r'public\s+class\s+(\w+)', code)
+    return match.group(1) if match else "Main"
 
-if __name__ == "__main__":
-    import os
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+@app.post("/run")
+async def run_code(request: Request):
+    try:
+        data = await request.json()
+        code = data.get("code", "")
+        className = data.get("className", "")
+        
+        # If className not provided, extract from code
+        if not className:
+            className = extract_main_class(code)
+            if not className:
+                raise HTTPException(status_code=400, detail="No public class found in code")
+
+        payload = {
+            "language_id": 62,  # Java
+            "source_code": code,
+            "stdin": "",
+            "command": f"java {className}"  # Specify which class to run
+        }
+
+        response = requests.post(
+            f"{JUDGE0_URL}?base64_encoded=false&wait=true",
+            json=payload,
+            headers=JUDGE0_HEADERS,
+            timeout=10  # Add timeout to prevent hanging
+        )
+        response.raise_for_status()  # Raise exception for HTTP errors
+
+        result = response.json()
+
+        # Handle different response fields
+        output = result.get("stdout") or result.get("compile_output") or result.get("stderr")
+        if not output:
+            output = "No output generated"
+
+        return {
+            "output": output,
+            "className": className,
+            "status": result.get("status", {}).get("description", "Completed")
+        }
+
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(status_code=502, detail=f"Judge0 API error: {str(e)}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
