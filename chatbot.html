@@ -3,28 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Batch Chatbot</title>
+    <title>Chatbot - DMCE Computer C Batch 2024</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <img src="college-logo.png" alt="DMCE Logo">
+                    <span>DMCE Computer C</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="students.html">Students</a></li>
+                    <li><a href="thoughts.html">Thoughts</a></li>
+                    <li><a href="chatbot.html" class="active">Chatbot</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Chatbot Header -->
+    <section class="students-header">
+        <div class="container">
+            <h1 class="section-title"><i class="fas fa-robot"></i> AI Assistant</h1>
+            <p class="section-subtitle">Your intelligent companion for batch-related queries and assistance</p>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
     <section class="chatbot-section">
         <div class="container">
-            <h2 class="chatbot-title">🤖 Batch Chatbot</h2>
             <div class="chatbot-container">
                 <div class="chatbot-header">
-                    <h3>DMCE Computer C Helper</h3>
+                    <div class="bot-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bot-info">
+                        <h3>DMCE Computer C Assistant</h3>
+                        <span class="bot-status"><i class="fas fa-circle"></i> Online</span>
+                    </div>
+                    <div class="chat-actions">
+                        <button id="clear-chat" title="Clear Chat"><i class="fas fa-trash"></i></button>
+                        <button id="minimize-chat" title="Minimize"><i class="fas fa-minus"></i></button>
+                    </div>
                 </div>
                 <div class="chatbot-messages" id="chatbot-messages">
-                    <div class="bot-message">Hello! I'm your batch helper bot. How can I assist you today?</div>
+                    <div class="bot-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>Hello! I'm your DMCE Computer C batch assistant. I can help you with:</p>
+                            <ul>
+                                <li>Student information and profiles</li>
+                                <li>Batch activities and events</li>
+                                <li>Academic resources</li>
+                                <li>General questions about our batch</li>
+                            </ul>
+                            <p>How can I assist you today?</p>
+                        </div>
+                        <span class="message-time">Just now</span>
+                    </div>
+                </div>
+                <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
                 <div class="chatbot-input">
-                    <input type="text" id="user-input" placeholder="Type your message..." />
-                    <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+                    <div class="input-container">
+                        <input type="text" id="user-input" placeholder="Type your message..." />
+                        <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="quick-btn" data-message="Tell me about the batch">About Batch</button>
+                        <button class="quick-btn" data-message="Show student profiles">Students</button>
+                        <button class="quick-btn" data-message="What are our recent activities?">Activities</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DMCE Computer C</h3>
+                    <p>Datta Meghe College of Engineering</p>
+                    <p>Computer Engineering Department</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="students.html">Students</a></li>
+                        <li><a href="thoughts.html">Thoughts</a></li>
+                        <li><a href="chatbot.html">Chatbot</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> krushnaemail123@gmail.com</p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/error404_comp_c/" class="instagram-clean">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DMCE Computer C. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
+    <script>
+        // Enhanced chatbot functionality
+        const sendButton = document.getElementById("send-button");
+        const userInput = document.getElementById("user-input");
+        const chatbotMessages = document.getElementById("chatbot-messages");
+        const typingIndicator = document.getElementById("typing-indicator");
+        const clearButton = document.getElementById("clear-chat");
+        const quickButtons = document.querySelectorAll('.quick-btn');
+
+        // Quick action buttons
+        quickButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const message = btn.dataset.message;
+                userInput.value = message;
+                sendMessage();
+            });
+        });
+
+        // Clear chat functionality
+        clearButton.addEventListener('click', () => {
+            chatbotMessages.innerHTML = `
+                <div class="bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Chat cleared! How can I help you today?</p>
+                    </div>
+                    <span class="message-time">Just now</span>
+                </div>
+            `;
+        });
+
+        function addUserMessage(message) {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("user-message");
+            messageDiv.innerHTML = `
+                <div class="message-content">
+                    <p>${message}</p>
+                </div>
+                <div class="message-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+            `;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function addBotMessage(message) {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("bot-message");
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>${message}</p>
+                </div>
+                <span class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+            `;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function showTyping() {
+            typingIndicator.style.display = 'flex';
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function hideTyping() {
+            typingIndicator.style.display = 'none';
+        }
+
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message === "") return;
+
+            addUserMessage(message);
+            userInput.value = "";
+            showTyping();
+
+            // Simulate API delay
+            setTimeout(() => {
+                fetch("https://compc.onrender.com/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    hideTyping();
+                    addBotMessage(data.reply);
+                })
+                .catch(err => {
+                    hideTyping();
+                    addBotMessage("I apologize, but I'm having trouble connecting right now. Please try again later or contact us via email.");
+                    console.error(err);
+                });
+            }, 1000);
+        }
+
+        sendButton.addEventListener("click", sendMessage);
+        userInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") sendMessage();
+        });
+
+        // Auto-resize input
+        userInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+    </script>
+
+    <style>
+        .chatbot-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+        }
+
+        .chatbot-header {
+            background: var(--primary-gradient);
+            padding: var(--space-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .bot-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text-white);
+        }
+
+        .bot-info {
+            flex: 1;
+        }
+
+        .bot-info h3 {
+            margin: 0;
+            color: var(--text-white);
+            font-size: 1.2rem;
+        }
+
+        .bot-status {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .bot-status i {
+            color: #4ade80;
+            margin-right: 0.5rem;
+        }
+
+        .chat-actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .chat-actions button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: var(--text-white);
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: background var(--transition-normal);
+        }
+
+        .chat-actions button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatbot-messages {
+            height: 500px;
+            padding: var(--space-lg);
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.2);
+            scroll-behavior: smooth;
+        }
+
+        .bot-message, .user-message {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+            animation: messageSlideIn 0.4s ease-out;
+        }
+
+        .user-message {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            background: var(--primary-gradient);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            font-size: 0.9rem;
+        }
+
+        .user-message .message-avatar {
+            background: var(--secondary-gradient);
+        }
+
+        .message-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--radius-lg);
+            color: var(--text-light);
+            max-width: 70%;
+            line-height: 1.5;
+        }
+
+        .user-message .message-content {
+            background: var(--primary-gradient);
+            color: var(--text-white);
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            align-self: flex-end;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+            padding: 0 var(--space-lg);
+        }
+
+        .typing-dots {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--radius-lg);
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: typingDots 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .input-container {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .chatbot-input {
+            padding: var(--space-lg);
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-full);
+            padding: var(--space-md) var(--space-lg);
+            color: var(--text-light);
+            font-size: 1rem;
+            outline: none;
+            transition: all var(--transition-normal);
+            min-height: 50px;
+            resize: none;
+        }
+
+        .chatbot-input input:focus {
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .quick-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .quick-btn:hover {
+            background: var(--primary-gradient);
+            border-color: transparent;
+        }
+
+        @keyframes typingDots {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+    </style>
 </body>
 </html>

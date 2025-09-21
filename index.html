@@ -14,68 +14,97 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">
-                <img src="college-logo.png" alt="DMCE Logo">
-                <span>DMCE Computer C - Batch 2024</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#thoughts">Thoughts</a></li>
-                <li><a href="students.html">Students</a></li>
-                <li><a href="#chatbot">Chatbot</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <img src="college-logo.png" alt="DMCE Logo">
+                    <span>DMCE Computer C</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="students.html">Students</a></li>
+                    <li><a href="thoughts.html">Thoughts</a></li>
+                    <li><a href="chatbot.html">Chatbot</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Group Photo -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
-    <div class="hero-content">
-        <h1>Welcome to Computer C Family</h1>
-        <p>Datta Meghe College of Engineering · Batch 2024</p>
-        <a href="students.html" class="btn">Meet Our Students</a>
-        <a href="chatbot.html" class="btn" style="margin-left:10px;">🤖 Open Chatbot</a>
-    </div>
-</section>
+        <div class="hero-content">
+            <h1>Welcome to Computer C Family</h1>
+            <p>Datta Meghe College of Engineering · Batch 2024</p>
+            <div class="hero-buttons">
+                <a href="about.html" class="btn">
+                    <i class="fas fa-info-circle"></i>
+                    Learn About Us
+                </a>
+                <a href="students.html" class="btn btn-secondary">
+                    <i class="fas fa-users"></i>
+                    Meet Our Students
+                </a>
+            </div>
+        </div>
+        <!-- Floating Elements -->
+        <div class="hero-float"></div>
+        <div class="hero-float"></div>
+    </section>
 
-
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Quick Access Section -->
+    <section class="about">
         <div class="container">
-            <h2>About Our Batch</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>We are the Computer Engineering (C Division) students of Datta Meghe College of Engineering, pursuing our passion for technology and innovation.</p>
-                    <p>This platform serves as a showcase of our collective achievements, individual portfolios, and a space to share our thoughts and projects.</p>
+            <div class="section-header">
+                <h2 class="section-title">Explore Our Platform</h2>
+                <p class="section-subtitle">Discover what makes our batch special</p>
+            </div>
+            <div class="thoughts-grid">
+                <div class="thought-card hover-lift">
+                    <h3><i class="fas fa-users"></i> Our Students</h3>
+                    <p>Meet the brilliant minds of Computer C Division. Explore individual profiles, skills, and interests.</p>
+                    <a href="students.html" class="btn" style="margin-top: 1rem;">View Students</a>
                 </div>
-                <div class="about-image">
-                    <img src="group-photo.jpg" alt="Group Photo">
+                <div class="thought-card hover-lift">
+                    <h3><i class="fas fa-lightbulb"></i> Thoughts & Ideas</h3>
+                    <p>Read insights, experiences, and visions for the future from our batch members.</p>
+                    <a href="thoughts.html" class="btn" style="margin-top: 1rem;">Read Thoughts</a>
+                </div>
+                <div class="thought-card hover-lift">
+                    <h3><i class="fas fa-robot"></i> AI Assistant</h3>
+                    <p>Chat with our intelligent bot for batch-related queries and assistance.</p>
+                    <a href="chatbot.html" class="btn" style="margin-top: 1rem;">Start Chatting</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Thoughts Section -->
-    <section id="thoughts" class="thoughts">
+    <!-- Statistics Section -->
+    <section class="thoughts">
         <div class="container">
-            <h2>Our Thoughts</h2>
+            <div class="section-header">
+                <h2 class="section-title">Our Achievements</h2>
+                <p class="section-subtitle">Numbers that define our journey</p>
+            </div>
             <div class="thoughts-grid">
-                <div class="thought-card">
-                    <h3>Future of Technology</h3>
-                    <p>Share your vision about emerging technologies and where you see the industry heading.</p>
+                <div class="thought-card text-center">
+                    <h2 class="text-gradient">60+</h2>
+                    <h4>Students</h4>
+                    <p>Brilliant minds working together</p>
                 </div>
-                <div class="thought-card">
-                    <h3>College Memories</h3>
-                    <p>Write about your most memorable moments from college life.</p>
+                <div class="thought-card text-center">
+                    <h2 class="text-gradient">100+</h2>
+                    <h4>Projects</h4>
+                    <p>Innovative solutions developed</p>
                 </div>
-                <div class="thought-card">
-                    <h3>Project Ideas</h3>
-                    <p>Discuss innovative project concepts you're working on or planning.</p>
+                <div class="thought-card text-center">
+                    <h2 class="text-gradient">24/7</h2>
+                    <h4>Collaboration</h4>
+                    <p>Always supporting each other</p>
                 </div>
             </div>
         </div>
@@ -86,15 +115,18 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>DMCE</h3>
-                    <p>computer C department</p>
+                    <h3>DMCE Computer C</h3>
+                    <p>Datta Meghe College of Engineering</p>
+                    <p>Computer Engineering Department</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="students.html">Students</a></li>
+                        <li><a href="thoughts.html">Thoughts</a></li>
+                        <li><a href="chatbot.html">Chatbot</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
