@@ -7,7 +7,7 @@
   <title>Deep Sawant - Computer Engineering Portfolio</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -16,18 +16,23 @@
     }
 
     :root {
-      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      --gold-gradient: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: rgba(255, 255, 255, 0.2);
-      --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
-      --shadow-medium: 0 12px 40px rgba(0, 0, 0, 0.15);
-      --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.2);
+      --bg-primary: #000000;
+      --bg-secondary: #0a0a0a;
+      --bg-card: #111111;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
       --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.9);
-      --text-accent: #ffd700;
+      --text-secondary: #b0b0b0;
+      --text-muted: #808080;
+      --border-color: #222222;
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.7);
+      --shadow-colored: 0 8px 30px rgba(102, 126, 234, 0.3);
     }
 
     html {
@@ -38,13 +43,12 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
       color: var(--text-primary);
-      background: var(--primary-gradient);
-      background-attachment: fixed;
+      background: var(--bg-primary);
       min-height: 100vh;
-      position: relative;
+      overflow-x: hidden;
     }
 
-    /* Animated background particles */
+    /* Animated grid background */
     body::before {
       content: "";
       position: fixed;
@@ -52,17 +56,74 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
       z-index: -1;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Floating tech icons */
+    .tech-float {
+      position: fixed;
+      font-size: 3rem;
+      opacity: 0.08;
+      z-index: 0;
       animation: float 20s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .tech-float:nth-child(1) {
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .tech-float:nth-child(2) {
+      top: 20%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    .tech-float:nth-child(3) {
+      top: 60%;
+      left: 5%;
+      animation-delay: 4s;
+    }
+
+    .tech-float:nth-child(4) {
+      top: 70%;
+      right: 10%;
+      animation-delay: 6s;
+    }
+
+    .tech-float:nth-child(5) {
+      top: 40%;
+      right: 5%;
+      animation-delay: 8s;
+    }
+
+    .tech-float:nth-child(6) {
+      top: 80%;
+      left: 20%;
+      animation-delay: 10s;
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
+      0%, 100% { 
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.08;
+      }
+      50% { 
+        transform: translateY(-30px) rotate(180deg);
+        opacity: 0.12;
+      }
     }
 
     /* Navigation */
@@ -70,55 +131,55 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: var(--glass-bg);
+      background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 15px 0;
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px 0;
       z-index: 1000;
       transition: all 0.3s ease;
     }
 
     nav.scrolled {
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: var(--shadow-light);
+      background: rgba(0, 0, 0, 0.95);
+      padding: 15px 0;
+      box-shadow: var(--shadow-md);
     }
 
     nav ul {
       list-style: none;
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: 50px;
       padding: 0 20px;
     }
 
     nav a {
       text-decoration: none;
-      color: var(--text-primary);
+      color: var(--text-secondary);
       font-weight: 500;
-      font-size: 1.1rem;
+      font-size: 1rem;
       position: relative;
       transition: all 0.3s ease;
-      padding: 10px 20px;
+      padding: 8px 16px;
       border-radius: 8px;
+      letter-spacing: 0.5px;
     }
 
     nav a:hover {
-      color: var(--text-accent);
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     nav a::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: 0;
       left: 50%;
       width: 0;
-      height: 3px;
-      background: var(--gold-gradient);
+      height: 2px;
+      background: var(--gradient-3);
       transform: translateX(-50%);
       transition: width 0.3s ease;
-      border-radius: 2px;
     }
 
     nav a:hover::after {
@@ -132,78 +193,161 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 80px 20px 20px;
-      background: 
-        radial-gradient(ellipse at top, rgba(255, 255, 255, 0.1) 0%, transparent 70%),
-        radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      padding: 100px 20px 20px;
+      position: relative;
     }
 
     .hero-content {
-      max-width: 800px;
+      max-width: 900px;
       animation: fadeInUp 1s ease-out;
+      position: relative;
+      z-index: 1;
     }
 
-    .profile-image {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: var(--gold-gradient);
-      margin: 0 auto 40px;
+    .profile-section {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 4rem;
+      gap: 60px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .profile-image-wrapper {
+      position: relative;
+    }
+
+    .profile-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: var(--gradient-1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
       font-weight: 700;
       color: white;
-      box-shadow: var(--shadow-heavy);
+      box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden;
       transition: transform 0.3s ease;
+      border: 4px solid var(--bg-primary);
     }
 
     .profile-image:hover {
       transform: scale(1.05);
     }
 
-    .profile-image::before {
-      content: '';
+    .tech-badges {
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      animation: shine 3s infinite;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
     }
 
-    @keyframes shine {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    .tech-badge {
+      position: absolute;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      border: 2px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      animation: badge-float 3s ease-in-out infinite;
+    }
+
+    .tech-badge:hover {
+      transform: scale(1.2);
+      z-index: 10;
+    }
+
+    .tech-badge:nth-child(1) {
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: 0s;
+    }
+
+    .tech-badge:nth-child(2) {
+      top: 20%;
+      right: -15px;
+      animation-delay: 0.5s;
+    }
+
+    .tech-badge:nth-child(3) {
+      bottom: 20%;
+      right: -15px;
+      animation-delay: 1s;
+    }
+
+    .tech-badge:nth-child(4) {
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: 1.5s;
+    }
+
+    .tech-badge:nth-child(5) {
+      bottom: 20%;
+      left: -15px;
+      animation-delay: 2s;
+    }
+
+    .tech-badge:nth-child(6) {
+      top: 20%;
+      left: -15px;
+      animation-delay: 2.5s;
+    }
+
+    @keyframes badge-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-text {
+      text-align: left;
     }
 
     h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
       margin-bottom: 20px;
-      background: linear-gradient(45deg, #fff, #ffd700);
+      background: var(--gradient-1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      line-height: 1.2;
     }
 
     .subtitle {
       font-size: 1.5rem;
       font-weight: 400;
       color: var(--text-secondary);
+      margin-bottom: 15px;
+    }
+
+    .typing-container {
+      font-size: 1.3rem;
+      font-weight: 500;
+      background: var(--gradient-3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      min-height: 40px;
       margin-bottom: 40px;
-      min-height: 60px;
     }
 
     .cta-buttons {
       display: flex;
       gap: 20px;
-      justify-content: center;
       flex-wrap: wrap;
     }
 
@@ -211,11 +355,11 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 15px 30px;
-      border-radius: 50px;
+      padding: 16px 32px;
+      border-radius: 12px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1rem;
       transition: all 0.3s ease;
       border: 2px solid transparent;
       position: relative;
@@ -223,74 +367,54 @@
     }
 
     .btn-primary {
-      background: var(--gold-gradient);
-      color: #333;
+      background: var(--gradient-1);
+      color: white;
+      box-shadow: var(--shadow-colored);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5);
     }
 
     .btn-secondary {
-      background: var(--glass-bg);
+      background: transparent;
       color: var(--text-primary);
-      border: 2px solid var(--glass-border);
-      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-color);
     }
 
-    .btn:hover {
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
       transform: translateY(-3px);
-      box-shadow: var(--shadow-medium);
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .btn:hover::before {
-      left: 100%;
     }
 
     /* Sections */
     section {
-      padding: 100px 20px;
+      padding: 120px 20px;
       max-width: 1200px;
       margin: 0 auto;
-    }
-
-    h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 60px;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
       position: relative;
     }
 
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      width: 80px;
-      height: 4px;
-      background: var(--gold-gradient);
-      transform: translateX(-50%);
-      border-radius: 2px;
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .section-intro {
+    .section-subtitle {
       text-align: center;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto 60px;
+      max-width: 700px;
+      margin: 0 auto 80px;
       line-height: 1.8;
     }
 
@@ -303,12 +427,10 @@
     }
 
     .card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       border-radius: 20px;
       padding: 40px;
-      box-shadow: var(--shadow-light);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
@@ -318,64 +440,95 @@
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
+      left: 0;
       width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.5s ease;
+      height: 4px;
+      background: var(--gradient-1);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
     }
 
     .card:hover::before {
-      left: 100%;
+      transform: scaleX(1);
     }
 
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-heavy);
-      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-lg);
     }
 
     .card-icon {
-      width: 60px;
-      height: 60px;
-      background: var(--accent-gradient);
-      border-radius: 15px;
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-3);
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 2rem;
       color: white;
-      margin-bottom: 20px;
-      box-shadow: var(--shadow-light);
+      margin-bottom: 25px;
+      box-shadow: var(--shadow-sm);
     }
 
     .card h3 {
+      font-family: 'Poppins', sans-serif;
       font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 15px;
-      color: var(--text-accent);
+      background: var(--gradient-4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .card p {
       color: var(--text-secondary);
-      line-height: 1.7;
-      text-align: left;
+      line-height: 1.8;
+    }
+
+    /* Project Cards with Tech Stack */
+    .project-card {
+      position: relative;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .tech-tag {
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+
+    .tech-tag:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: var(--text-primary);
     }
 
     /* Skills */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 20px;
       margin-top: 60px;
     }
 
     .skill-item {
-      background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border);
-      border-radius: 15px;
-      padding: 25px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px 20px;
       text-align: center;
       transition: all 0.3s ease;
       position: relative;
@@ -388,95 +541,101 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 4px;
-      background: var(--gold-gradient);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
+      height: 100%;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .skill-item:hover::before {
-      transform: scaleX(1);
+      opacity: 0.1;
     }
 
     .skill-item:hover {
       transform: translateY(-5px);
-      box-shadow: var(--shadow-medium);
-      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: var(--shadow-md);
     }
 
     .skill-icon {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 15px;
-      color: var(--text-accent);
+      position: relative;
+      z-index: 1;
+    }
+
+    .skill-icon .fab,
+    .skill-icon .fas {
+      background: var(--gradient-5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .skill-name {
       font-weight: 600;
       color: var(--text-primary);
-    }
-
-    /* Contact */
-    .contact-icons {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .contact-icon {
-      width: 60px;
-      height: 60px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border);
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: var(--text-primary);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-icon::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--gold-gradient);
-      transform: scale(0);
-      transition: transform 0.3s ease;
-      border-radius: 15px;
-    }
-
-    .contact-icon:hover::before {
-      transform: scale(1);
-    }
-
-    .contact-icon:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-medium);
-      color: #333;
-    }
-
-    .contact-icon i {
       position: relative;
       z-index: 1;
     }
 
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-card i {
+      font-size: 2.5rem;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .contact-card h3 {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .contact-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
     /* Footer */
     footer {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border-top: 1px solid var(--glass-border);
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
       padding: 40px 20px;
       text-align: center;
-      color: var(--text-secondary);
+      color: var(--text-muted);
+    }
+
+    footer p {
+      font-size: 0.95rem;
     }
 
     /* Animations */
@@ -497,24 +656,42 @@
     }
 
     /* Responsive Design */
+    @media (max-width: 968px) {
+      .profile-section {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .cta-buttons {
+        justify-content: center;
+      }
+    }
+
     @media (max-width: 768px) {
       nav ul {
-        flex-direction: column;
         gap: 20px;
-        padding: 0 20px;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       h1 {
         font-size: 2.5rem;
       }
 
+      h2 {
+        font-size: 2rem;
+      }
+
       .subtitle {
         font-size: 1.2rem;
       }
 
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
+      .typing-container {
+        font-size: 1.1rem;
       }
 
       .card-grid {
@@ -525,8 +702,8 @@
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       }
 
-      .contact-icons {
-        flex-wrap: wrap;
+      section {
+        padding: 80px 20px;
       }
     }
 
@@ -537,25 +714,31 @@
         font-size: 3rem;
       }
 
+      .tech-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+
       h1 {
         font-size: 2rem;
       }
 
-      .subtitle {
-        font-size: 1.1rem;
-      }
-
-      section {
-        padding: 60px 15px;
-      }
-
       .card {
-        padding: 30px 25px;
+        padding: 30px 20px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Floating tech icons -->
+  <div class="tech-float"><i class="fab fa-react"></i></div>
+  <div class="tech-float"><i class="fab fa-python"></i></div>
+  <div class="tech-float"><i class="fab fa-js"></i></div>
+  <div class="tech-float"><i class="fab fa-node"></i></div>
+  <div class="tech-float"><i class="fas fa-microchip"></i></div>
+  <div class="tech-float"><i class="fab fa-git-alt"></i></div>
+
   <nav id="navbar">
     <ul>
       <li><a href="#home">Home</a></li>
@@ -568,28 +751,43 @@
 
   <section id="home" class="hero">
     <div class="hero-content">
-      <div class="profile-image">D</div>
-      <h1>Deep Sawant</h1>
-      <div class="subtitle">
-        <span id="typing-text"></span>
-      </div>
-      <div class="cta-buttons">
-        <a href="#projects" class="btn btn-primary">
-          <i class="fas fa-rocket"></i>
-          View Projects
-        </a>
-        <a href="#contact" class="btn btn-secondary">
-          <i class="fas fa-envelope"></i>
-          Get In Touch
-        </a>
+      <div class="profile-section">
+        <div class="profile-image-wrapper">
+          <div class="profile-image">D</div>
+          <div class="tech-badges">
+            <div class="tech-badge"><i class="fab fa-html5" style="color: #E34F26;"></i></div>
+            <div class="tech-badge"><i class="fab fa-css3-alt" style="color: #1572B6;"></i></div>
+            <div class="tech-badge"><i class="fab fa-js" style="color: #F7DF1E;"></i></div>
+            <div class="tech-badge"><i class="fab fa-python" style="color: #3776AB;"></i></div>
+            <div class="tech-badge"><i class="fab fa-react" style="color: #61DAFB;"></i></div>
+            <div class="tech-badge"><i class="fas fa-microchip" style="color: #00D9FF;"></i></div>
+          </div>
+        </div>
+        <div class="hero-text">
+          <h1>Deep Sawant</h1>
+          <p class="subtitle">Computer Engineering Student @ DMCE</p>
+          <div class="typing-container">
+            <span id="typing-text"></span>
+          </div>
+          <div class="cta-buttons">
+            <a href="#projects" class="btn btn-primary">
+              <i class="fas fa-rocket"></i>
+              View My Work
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <i class="fas fa-envelope"></i>
+              Get In Touch
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="about" class="fade-in-up">
     <h2>About Me</h2>
-    <p class="section-intro">
-      Passionate Computer Engineering student at DMCE with a drive for innovation and problem-solving. I specialize in web development, IoT systems, and machine learning, always eager to turn creative ideas into reality.
+    <p class="section-subtitle">
+      Passionate about creating innovative solutions through code. I combine technical expertise with creative problem-solving to build impactful projects.
     </p>
     <div class="card-grid">
       <div class="card">
@@ -597,59 +795,74 @@
           <i class="fas fa-graduation-cap"></i>
         </div>
         <h3>Education</h3>
-        <p>Currently pursuing Computer Engineering at DMCE, building a strong foundation in computer science principles and practical applications.</p>
+        <p>Currently pursuing Computer Engineering at DMCE, building a strong foundation in software development, algorithms, data structures, and modern technologies.</p>
       </div>
       <div class="card">
         <div class="card-icon">
           <i class="fas fa-code"></i>
         </div>
         <h3>Development</h3>
-        <p>Full-stack web developer with experience in modern technologies. I love creating responsive, user-friendly applications that solve real problems.</p>
+        <p>Full-stack web developer proficient in modern frameworks and technologies. Experienced in building responsive, scalable applications from concept to deployment.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <i class="fas fa-microchip"></i>
+          <i class="fas fa-lightbulb"></i>
         </div>
         <h3>Innovation</h3>
-        <p>IoT enthusiast working with ESP32 and automation systems. Always exploring new technologies to create smart, efficient solutions.</p>
+        <p>IoT and ML enthusiast constantly exploring emerging technologies. Focused on creating smart solutions that bridge hardware and software seamlessly.</p>
       </div>
     </div>
   </section>
 
   <section id="projects" class="fade-in-up">
     <h2>Featured Projects</h2>
-    <p class="section-intro">
-      Here are some of my notable projects that showcase my skills and passion for technology.
+    <p class="section-subtitle">
+      A showcase of my technical projects demonstrating practical application of various technologies and problem-solving abilities.
     </p>
     <div class="card-grid">
-      <div class="card">
+      <div class="card project-card">
         <div class="card-icon">
           <i class="fas fa-home"></i>
         </div>
         <h3>Smart Home Automation</h3>
-        <p>ESP32-based IoT system for controlling lights and fans via Blynk app. Features relay control without additional power modules, making it energy-efficient and cost-effective for smart home implementation.</p>
+        <p>ESP32-based IoT system enabling remote control of home appliances through mobile app. Implemented relay-based switching with optimized power management and real-time status monitoring.</p>
+        <div class="tech-stack">
+          <span class="tech-tag"><i class="fas fa-microchip"></i> ESP32</span>
+          <span class="tech-tag"><i class="fab fa-bluetooth"></i> IoT</span>
+          <span class="tech-tag"><i class="fas fa-mobile-alt"></i> Blynk</span>
+        </div>
       </div>
-      <div class="card">
+      <div class="card project-card">
         <div class="card-icon">
           <i class="fas fa-chart-line"></i>
         </div>
         <h3>Sales Forecasting System</h3>
-        <p>Machine learning project using Python and regression models to predict product sales trends. Implemented data preprocessing, feature engineering, and model evaluation for accurate forecasting.</p>
+        <p>Machine learning solution for predicting sales trends using regression models. Features comprehensive data preprocessing, feature engineering, and model optimization for accurate forecasting.</p>
+        <div class="tech-stack">
+          <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+          <span class="tech-tag"><i class="fas fa-brain"></i> ML</span>
+          <span class="tech-tag"><i class="fas fa-chart-bar"></i> Analytics</span>
+        </div>
       </div>
-      <div class="card">
+      <div class="card project-card">
         <div class="card-icon">
-          <i class="fas fa-globe"></i>
+          <i class="fas fa-laptop-code"></i>
         </div>
         <h3>Portfolio Website</h3>
-        <p>Modern, responsive portfolio website built with HTML, CSS, and JavaScript. Features glassmorphism design, smooth animations, and optimized performance across all devices.</p>
+        <p>Modern, professional portfolio showcasing projects and skills. Built with performance optimization, smooth animations, and fully responsive design across all devices.</p>
+        <div class="tech-stack">
+          <span class="tech-tag"><i class="fab fa-html5"></i> HTML5</span>
+          <span class="tech-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+          <span class="tech-tag"><i class="fab fa-js"></i> JavaScript</span>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="skills" class="fade-in-up">
     <h2>Technical Skills</h2>
-    <p class="section-intro">
-      A comprehensive toolkit of technologies and frameworks I use to bring ideas to life.
+    <p class="section-subtitle">
+      Comprehensive expertise across multiple domains including web development, programming languages, and emerging technologies.
     </p>
     <div class="skills-grid">
       <div class="skill-item">
@@ -684,9 +897,21 @@
       </div>
       <div class="skill-item">
         <div class="skill-icon">
+          <i class="fab fa-react"></i>
+        </div>
+        <div class="skill-name">React</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-icon">
+          <i class="fab fa-node"></i>
+        </div>
+        <div class="skill-name">Node.js</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-icon">
           <i class="fas fa-microchip"></i>
         </div>
-        <div class="skill-name">ESP32/IoT</div>
+        <div class="skill-name">IoT</div>
       </div>
       <div class="skill-item">
         <div class="skill-icon">
@@ -700,32 +925,52 @@
         </div>
         <div class="skill-name">GitHub</div>
       </div>
+      <div class="skill-item">
+        <div class="skill-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <div class="skill-name">SQL</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <div class="skill-name">Machine Learning</div>
+      </div>
     </div>
   </section>
 
   <section id="contact" class="fade-in-up">
     <h2>Let's Connect</h2>
-    <p class="section-intro">
-      I'm always open to discussing new opportunities, collaborations, or just having a chat about technology. Feel free to reach out!
+    <p class="section-subtitle">
+      Open to opportunities, collaborations, and discussions about technology. Feel free to reach out through any platform.
     </p>
-    <div class="contact-icons">
-      <a href="mailto:deep.sawant@example.com" class="contact-icon" title="Email">
+    <div class="contact-grid">
+      <a href="mailto:deep.sawant@example.com" class="contact-card">
         <i class="fas fa-envelope"></i>
+        <h3>Email</h3>
+        <p>deep.sawant@example.com</p>
       </a>
-      <a href="https://www.linkedin.com/in/deepsawant/" target="_blank" class="contact-icon" title="LinkedIn">
+      <a href="https://www.linkedin.com/in/deepsawant/" target="_blank" class="contact-card">
         <i class="fab fa-linkedin"></i>
+        <h3>LinkedIn</h3>
+        <p>Connect professionally</p>
       </a>
-      <a href="https://github.com/deepsawant" target="_blank" class="contact-icon" title="GitHub">
+      <a href="https://github.com/deepsawant" target="_blank" class="contact-card">
         <i class="fab fa-github"></i>
+        <h3>GitHub</h3>
+        <p>View my repositories</p>
       </a>
-      <a href="https://instagram.com/__deep_sawant_14" target="_blank" class="contact-icon" title="Instagram">
+      <a href="https://instagram.com/__deep_sawant_14" target="_blank" class="contact-card">
         <i class="fab fa-instagram"></i>
+        <h3>Instagram</h3>
+        <p>Follow my journey</p>
       </a>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 Deep Sawant. All rights reserved. | Designed with passion and code.</p>
+    <p>&copy; 2025 Deep Sawant. All rights reserved. Crafted with precision and passion.</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -733,14 +978,14 @@
     // Typing animation
     const typed = new Typed("#typing-text", {
       strings: [
-        "Computer Engineering Student",
         "Full-Stack Developer",
         "IoT Enthusiast",
         "Machine Learning Explorer",
-        "Problem Solver"
+        "Problem Solver",
+        "Tech Innovator"
       ],
-      typeSpeed: 50,
-      backSpeed: 30,
+      typeSpeed: 60,
+      backSpeed: 40,
       loop: true,
       showCursor: true,
       cursorChar: "|"
@@ -773,13 +1018,14 @@
     // Intersection Observer for fade-in animations
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
@@ -788,39 +1034,103 @@
       observer.observe(el);
     });
 
-    // Add hover effects for cards
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.02)';
+    // Add stagger animation to cards
+    document.querySelectorAll('.card-grid').forEach(grid => {
+      const cards = grid.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
       });
-      
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
+    });
+
+    // Add stagger animation to skills
+    document.querySelectorAll('.skills-grid').forEach(grid => {
+      const skills = grid.querySelectorAll('.skill-item');
+      skills.forEach((skill, index) => {
+        skill.style.animationDelay = `${index * 0.05}s`;
       });
     });
 
     // Parallax effect for hero section
+    let lastScrollY = window.pageYOffset;
     window.addEventListener('scroll', function() {
       const scrolled = window.pageYOffset;
-      const parallax = document.querySelector('.hero');
-      const speed = scrolled * 0.5;
-      parallax.style.transform = `translateY(${speed}px)`;
+      const hero = document.querySelector('.hero');
+      if (hero && scrolled < window.innerHeight) {
+        const speed = scrolled * 0.3;
+        hero.style.transform = `translateY(${speed}px)`;
+      }
     });
 
-    // Add click ripple effect
-    document.querySelectorAll('.btn, .contact-icon').forEach(element => {
+    // Add hover effect to tech badges
+    document.querySelectorAll('.tech-badge').forEach(badge => {
+      badge.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.3)';
+        this.style.zIndex = '10';
+      });
+      
+      badge.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.zIndex = '1';
+      });
+    });
+
+    // Random color change for floating tech icons
+    const gradients = [
+      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+      'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+      'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+      'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+    ];
+
+    document.querySelectorAll('.card-icon').forEach((icon, index) => {
+      icon.style.background = gradients[index % gradients.length];
+    });
+
+    // Add typing effect to section subtitles on scroll
+    const subtitles = document.querySelectorAll('.section-subtitle');
+    const subtitleObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '0';
+          setTimeout(() => {
+            entry.target.style.transition = 'opacity 0.8s ease-in';
+            entry.target.style.opacity = '1';
+          }, 200);
+          subtitleObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    subtitles.forEach(subtitle => {
+      subtitleObserver.observe(subtitle);
+    });
+
+    // Add click ripple effect to buttons
+    document.querySelectorAll('.btn, .contact-card').forEach(element => {
       element.addEventListener('click', function(e) {
         const ripple = document.createElement('div');
         ripple.style.position = 'absolute';
         ripple.style.borderRadius = '50%';
-        ripple.style.background = 'rgba(255, 255, 255, 0.6)';
-        ripple.style.transform = 'scale(0)';
-        ripple.style.animation = 'ripple 0.6s linear';
-        ripple.style.left = (e.clientX - e.target.offsetLeft) + 'px';
-        ripple.style.top = (e.clientY - e.target.offsetTop) + 'px';
-        ripple.style.width = ripple.style.height = '20px';
+        ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+        ripple.style.width = '20px';
+        ripple.style.height = '20px';
+        ripple.style.pointerEvents = 'none';
         
+        const rect = this.getBoundingClientRect();
+        ripple.style.left = (e.clientX - rect.left - 10) + 'px';
+        ripple.style.top = (e.clientY - rect.top - 10) + 'px';
+        
+        this.style.position = 'relative';
         this.appendChild(ripple);
+        
+        ripple.animate([
+          { transform: 'scale(0)', opacity: 1 },
+          { transform: 'scale(10)', opacity: 0 }
+        ], {
+          duration: 600,
+          easing: 'ease-out'
+        });
         
         setTimeout(() => {
           ripple.remove();
@@ -828,17 +1138,26 @@
       });
     });
 
-    // Add ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes ripple {
-        to {
-          transform: scale(4);
-          opacity: 0;
-        }
+    // Rotate tech badges on scroll
+    let badges = document.querySelectorAll('.tech-badge');
+    window.addEventListener('scroll', function() {
+      const scrollPercent = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 360;
+      badges.forEach((badge, index) => {
+        badge.style.transform = `rotate(${scrollPercent + (index * 60)}deg)`;
+      });
+    });
+
+    // Add performance optimization
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          // Scroll-based animations here
+          ticking = false;
+        });
+        ticking = true;
       }
-    `;
-    document.head.appendChild(style);
+    });
   </script>
 </body>
 </html>
