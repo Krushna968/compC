@@ -9,6 +9,12 @@
       font-family: 'Segoe UI', sans-serif;
       background: #eef2f7;
       margin: 0;
+      color: #2c3e50;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background: #1e1e1e;
+      color: #ecf0f1;
     }
     .profile-card {
       max-width: 800px;
@@ -17,12 +23,17 @@
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       overflow: hidden;
+      transition: background 0.3s;
+    }
+    .dark-mode .profile-card {
+      background: #2b2b2b;
     }
     .header {
       background: #34495e;
       color: white;
       padding: 30px;
       text-align: center;
+      position: relative;
     }
     .header img {
       width: 120px;
@@ -34,9 +45,21 @@
     .header h1 {
       margin: 10px 0 5px;
     }
-    .header p {
-      font-size: 16px;
-      color: #bdc3c7;
+    .toggle-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: #2ecc71;
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+    .toggle-btn:hover {
+      background: #27ae60;
     }
     .section {
       padding: 25px 30px;
@@ -49,6 +72,9 @@
       margin-top: 0;
       color: #2c3e50;
     }
+    .dark-mode .section h2 {
+      color: #ecf0f1;
+    }
     .skills span {
       background-color: #f1f1f1;
       padding: 6px 12px;
@@ -56,9 +82,35 @@
       display: inline-block;
       margin: 5px;
       font-size: 14px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .skills span:hover {
+      background-color: #2ecc71;
+      color: white;
+      transform: scale(1.1);
+    }
+    .dark-mode .skills span {
+      background-color: #3b3b3b;
     }
     .contact p {
       margin: 6px 0;
+    }
+    .contact a {
+      text-decoration: none;
+      color: #3498db;
+      transition: color 0.3s;
+    }
+    .contact a:hover {
+      color: #2ecc71;
+    }
+    @media (max-width: 600px) {
+      .profile-card {
+        margin: 20px;
+      }
+      .header img {
+        width: 100px;
+        height: 100px;
+      }
     }
   </style>
 </head>
@@ -66,6 +118,7 @@
 
   <div class="profile-card">
     <div class="header">
+      <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
       <img src="https://via.placeholder.com/120" alt="Student Photo">
       <h1>Aryan Sonawane</h1>
       <p>Computer Engineering Student | Aspiring Full-Stack Developer</p>
@@ -73,9 +126,7 @@
 
     <div class="section">
       <h2>About Me</h2>
-      <p>
-        Hello! I'm Aryan Sonawane, a computer science student passionate about coding, software development, and learning new technologies. I enjoy working on web projects and solving algorithmic problems.
-      </p>
+      <p>Hello! I'm Aryan Sonawane, a computer science student passionate about coding, software development, and learning new technologies. I enjoy working on web projects and solving algorithmic problems.</p>
     </div>
 
     <div class="section">
@@ -89,20 +140,27 @@
         <span>HTML</span>
         <span>Python</span>
         <span>C++</span>
+        <span>JavaScript</span>
+        <span>CSS</span>
       </div>
     </div>
 
     <div class="section">
       <h2>Contact Information</h2>
       <div class="contact">
-        <p><strong>Email:</strong> aryan.sonawane094@gmail.com</p>
-        <p><strong>Phone:</strong> +91-7678004824</p>
-        <p><strong>LinkedIn:</strong> linkedin.com/in/aryansonawane</p>
-        <p><strong>GitHub:</strong> github.com/aryan-sonawane</p>
+        <p><strong>Email:</strong> <a href="mailto:aryan.sonawane094@gmail.com">aryan.sonawane094@gmail.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+917678004824">+91-7678004824</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/aryansonawane" target="_blank">linkedin.com/in/aryansonawane</a></p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/aryan-sonawane" target="_blank">github.com/aryan-sonawane</a></p>
       </div>
     </div>
   </div>
 
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+
 </body>
 </html>
-
