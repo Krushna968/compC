@@ -3,164 +3,179 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Profile - Aryan Sonawane</title>
+  <title>Aryan Sonawane | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #eef2f7;
-      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
       color: #2c3e50;
-      transition: background 0.3s, color 0.3s;
+      transition: 0.5s ease;
+      overflow-x: hidden;
     }
     .dark-mode {
-      background: #1e1e1e;
+      background: linear-gradient(135deg, #121212, #181818);
       color: #ecf0f1;
     }
-    .profile-card {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: background 0.3s;
-    }
-    .dark-mode .profile-card {
-      background: #2b2b2b;
-    }
-    .header {
-      background: #34495e;
-      color: white;
-      padding: 30px;
+
+    header {
       text-align: center;
+      padding: 50px 20px;
       position: relative;
+      background: url('https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2') no-repeat center/cover;
+      color: white;
     }
-    .header img {
-      width: 120px;
-      height: 120px;
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+    header h1, header p, header img {
+      position: relative;
+      z-index: 1;
+    }
+    header img {
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
-      border: 4px solid #fff;
-      margin-bottom: 10px;
+      border: 5px solid white;
+      animation: float 3s ease-in-out infinite;
     }
-    .header h1 {
-      margin: 10px 0 5px;
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
+
     .toggle-btn {
       position: absolute;
-      top: 15px;
-      right: 20px;
-      background: #2ecc71;
+      top: 20px; right: 20px;
+      background: #00b894;
       border: none;
       color: white;
-      padding: 8px 15px;
-      border-radius: 20px;
+      padding: 10px 20px;
+      border-radius: 25px;
       cursor: pointer;
-      font-size: 14px;
-      transition: background 0.3s;
+      z-index: 2;
+      transition: 0.3s;
     }
     .toggle-btn:hover {
-      background: #27ae60;
+      background: #019875;
     }
+
     .section {
-      padding: 25px 30px;
-      border-bottom: 1px solid #eee;
+      max-width: 900px;
+      background: rgba(255,255,255,0.8);
+      margin: 40px auto;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.2s ease;
     }
-    .section:last-child {
-      border-bottom: none;
+    .dark-mode .section {
+      background: rgba(40,40,40,0.85);
     }
+
     .section h2 {
-      margin-top: 0;
-      color: #2c3e50;
+      margin-bottom: 15px;
+      color: #16a085;
     }
-    .dark-mode .section h2 {
-      color: #ecf0f1;
+
+    .skills-bar {
+      margin-top: 10px;
     }
-    .skills span {
-      background-color: #f1f1f1;
-      padding: 6px 12px;
-      border-radius: 20px;
-      display: inline-block;
-      margin: 5px;
-      font-size: 14px;
-      transition: background 0.3s, transform 0.3s;
+    .bar {
+      background: #bdc3c7;
+      border-radius: 10px;
+      margin: 10px 0;
+      overflow: hidden;
     }
-    .skills span:hover {
-      background-color: #2ecc71;
+    .bar span {
+      display: block;
+      height: 10px;
+      background: #27ae60;
+      width: 0;
+      border-radius: 10px;
+      transition: width 1s ease-out;
+    }
+
+    .section:hover .bar span {
+      width: var(--progress);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #2c3e50;
       color: white;
-      transform: scale(1.1);
     }
-    .dark-mode .skills span {
-      background-color: #3b3b3b;
+    footer a {
+      color: #00cec9;
+      margin: 0 10px;
+      font-size: 20px;
+      transition: 0.3s;
     }
-    .contact p {
-      margin: 6px 0;
+    footer a:hover {
+      color: #55efc4;
+      text-shadow: 0 0 10px #55efc4;
     }
-    .contact a {
-      text-decoration: none;
-      color: #3498db;
-      transition: color 0.3s;
-    }
-    .contact a:hover {
-      color: #2ecc71;
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     @media (max-width: 600px) {
-      .profile-card {
-        margin: 20px;
-      }
-      .header img {
-        width: 100px;
-        height: 100px;
-      }
+      .section { margin: 20px; padding: 20px; }
     }
   </style>
 </head>
 <body>
+  <header>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+    <img src="https://via.placeholder.com/120" alt="Aryan">
+    <h1>Aryan Sonawane</h1>
+    <p>Computer Engineering Student | Aspiring Full-Stack Developer</p>
+  </header>
 
-  <div class="profile-card">
-    <div class="header">
-      <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
-      <img src="https://via.placeholder.com/120" alt="Student Photo">
-      <h1>Aryan Sonawane</h1>
-      <p>Computer Engineering Student | Aspiring Full-Stack Developer</p>
-    </div>
+  <div class="section">
+    <h2>About Me</h2>
+    <p>Hello! I'm Aryan Sonawane, a passionate Computer Engineering student with a love for building robust web applications and exploring AI-driven projects. My mission is to create impactful digital solutions through innovative web technologies.</p>
+  </div>
 
-    <div class="section">
-      <h2>About Me</h2>
-      <p>Hello! I'm Aryan Sonawane, a computer science student passionate about coding, software development, and learning new technologies. I enjoy working on web projects and solving algorithmic problems.</p>
-    </div>
-
-    <div class="section">
-      <h2>Education</h2>
-      <p><strong>B.E Computer Engineering</strong><br>DMCE AIROLI 2028</p>
-    </div>
-
-    <div class="section">
-      <h2>Skills</h2>
-      <div class="skills">
-        <span>HTML</span>
-        <span>Python</span>
-        <span>C++</span>
-        <span>JavaScript</span>
-        <span>CSS</span>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Contact Information</h2>
-      <div class="contact">
-        <p><strong>Email:</strong> <a href="mailto:aryan.sonawane094@gmail.com">aryan.sonawane094@gmail.com</a></p>
-        <p><strong>Phone:</strong> <a href="tel:+917678004824">+91-7678004824</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/aryansonawane" target="_blank">linkedin.com/in/aryansonawane</a></p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/aryan-sonawane" target="_blank">github.com/aryan-sonawane</a></p>
-      </div>
+  <div class="section">
+    <h2>Skills</h2>
+    <div class="skills-bar">
+      <div class="bar" style="--progress: 95%;"><span></span></div> HTML
+      <div class="bar" style="--progress: 90%;"><span></span></div> CSS
+      <div class="bar" style="--progress: 85%;"><span></span></div> Python
+      <div class="bar" style="--progress: 80%;"><span></span></div> C++
     </div>
   </div>
+
+  <div class="section">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:aryan.sonawane094@gmail.com">aryan.sonawane094@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/aryansonawane" target="_blank">linkedin.com/in/aryansonawane</a></p>
+    <p>GitHub: <a href="https://github.com/aryan-sonawane" target="_blank">github.com/aryan-sonawane</a></p>
+  </div>
+
+  <footer>
+    <p>Connect with me on</p>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fas fa-envelope"></i></a>
+    <p>© 2025 Aryan Sonawane</p>
+  </footer>
 
   <script>
     function toggleMode() {
       document.body.classList.toggle('dark-mode');
     }
   </script>
-
 </body>
 </html>
