@@ -11,17 +11,18 @@
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #e0eafc, #cfdef3);
       color: #2c3e50;
-      transition: 0.5s ease;
+      transition: background 0.5s ease, color 0.5s ease;
       overflow-x: hidden;
     }
     .dark-mode {
-      background: linear-gradient(135deg, #121212, #181818);
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: #ecf0f1;
     }
 
+    /* Header Section */
     header {
       text-align: center;
-      padding: 50px 20px;
+      padding: 80px 20px 60px;
       position: relative;
       background: url('https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2') no-repeat center/cover;
       color: white;
@@ -34,18 +35,17 @@
       background: rgba(0,0,0,0.6);
       z-index: 0;
     }
-    header h1, header p, header img {
-      position: relative;
-      z-index: 1;
-    }
+    header * { position: relative; z-index: 1; }
+
     header img {
-      width: 130px;
-      height: 130px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       border: 5px solid white;
+      box-shadow: 0 0 15px rgba(255,255,255,0.7);
       animation: float 3s ease-in-out infinite;
+      margin-bottom: 20px;
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
@@ -53,71 +53,120 @@
 
     .toggle-btn {
       position: absolute;
-      top: 20px; right: 20px;
+      top: 25px; right: 25px;
       background: #00b894;
       border: none;
       color: white;
       padding: 10px 20px;
       border-radius: 25px;
       cursor: pointer;
+      font-weight: bold;
       z-index: 2;
       transition: 0.3s;
     }
     .toggle-btn:hover {
       background: #019875;
+      transform: scale(1.05);
     }
 
+    /* Section Container */
     .section {
       max-width: 900px;
-      background: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.9);
       margin: 40px auto;
-      padding: 30px 40px;
-      border-radius: 15px;
+      padding: 40px 50px;
+      border-radius: 20px;
       box-shadow: 0 15px 25px rgba(0,0,0,0.1);
       backdrop-filter: blur(10px);
       animation: fadeIn 1.2s ease;
     }
     .dark-mode .section {
-      background: rgba(40,40,40,0.85);
+      background: rgba(30,30,30,0.85);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     }
 
     .section h2 {
       margin-bottom: 15px;
       color: #16a085;
+      font-size: 26px;
+      text-align: center;
+    }
+    .dark-mode .section h2 {
+      color: #1abc9c;
     }
 
-    .skills-bar {
-      margin-top: 10px;
+    /* About Section */
+    .about-text {
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.7;
     }
-    .bar {
-      background: #bdc3c7;
-      border-radius: 10px;
+
+    /* Skills Section */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+    .skill-box {
+      background: rgba(255,255,255,0.9);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .dark-mode .skill-box {
+      background: rgba(40,40,40,0.9);
+    }
+    .skill-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .skill-box i {
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: #27ae60;
+    }
+    .skill-box h3 {
+      font-size: 20px;
       margin: 10px 0;
-      overflow: hidden;
+      color: #16a085;
     }
-    .bar span {
-      display: block;
-      height: 10px;
-      background: #27ae60;
-      width: 0;
-      border-radius: 10px;
-      transition: width 1s ease-out;
+    .skill-box p {
+      font-size: 14px;
+      opacity: 0.8;
     }
 
-    .section:hover .bar span {
-      width: var(--progress);
+    /* Contact Section */
+    .contact p {
+      text-align: center;
+      font-size: 16px;
+      margin: 8px 0;
+    }
+    .contact a {
+      color: #2980b9;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+      color: #1abc9c;
     }
 
+    /* Footer */
     footer {
       text-align: center;
-      padding: 25px;
+      padding: 30px 0;
       background: #2c3e50;
       color: white;
+      margin-top: 40px;
     }
     footer a {
       color: #00cec9;
       margin: 0 10px;
-      font-size: 20px;
+      font-size: 22px;
       transition: 0.3s;
     }
     footer a:hover {
@@ -130,34 +179,53 @@
       to { opacity: 1; transform: translateY(0); }
     }
     @media (max-width: 600px) {
-      .section { margin: 20px; padding: 20px; }
+      .section { margin: 20px; padding: 25px; }
+      .skill-box { padding: 20px; }
     }
   </style>
 </head>
 <body>
   <header>
     <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
-    <img src="https://via.placeholder.com/120" alt="Aryan">
+    <img src="https://via.placeholder.com/150" alt="Aryan Sonawane">
     <h1>Aryan Sonawane</h1>
     <p>Computer Engineering Student | Aspiring Full-Stack Developer</p>
   </header>
 
   <div class="section">
     <h2>About Me</h2>
-    <p>Hello! I'm Aryan Sonawane, a passionate Computer Engineering student with a love for building robust web applications and exploring AI-driven projects. My mission is to create impactful digital solutions through innovative web technologies.</p>
+    <p class="about-text">
+      Hello! I'm <strong>Aryan Sonawane</strong>, a passionate Computer Engineering student who loves crafting web applications and exploring AI-driven technologies. My goal is to develop innovative, efficient, and user-friendly digital experiences that make a real impact.
+    </p>
   </div>
 
   <div class="section">
     <h2>Skills</h2>
-    <div class="skills-bar">
-      <div class="bar" style="--progress: 95%;"><span></span></div> HTML
-      <div class="bar" style="--progress: 90%;"><span></span></div> CSS
-      <div class="bar" style="--progress: 85%;"><span></span></div> Python
-      <div class="bar" style="--progress: 80%;"><span></span></div> C++
+    <div class="skills-container">
+      <div class="skill-box">
+        <i class="fab fa-html5"></i>
+        <h3>HTML</h3>
+        <p>Building structured and semantic web pages using HTML5.</p>
+      </div>
+      <div class="skill-box">
+        <i class="fab fa-css3-alt"></i>
+        <h3>CSS</h3>
+        <p>Designing responsive, modern interfaces with animations and layouts.</p>
+      </div>
+      <div class="skill-box">
+        <i class="fab fa-python"></i>
+        <h3>Python</h3>
+        <p>Developing backend scripts and exploring AI/ML concepts.</p>
+      </div>
+      <div class="skill-box">
+        <i class="fa-solid fa-code"></i>
+        <h3>C++</h3>
+        <p>Strong understanding of object-oriented programming and algorithms.</p>
+      </div>
     </div>
   </div>
 
-  <div class="section">
+  <div class="section contact">
     <h2>Contact</h2>
     <p>Email: <a href="mailto:aryan.sonawane094@gmail.com">aryan.sonawane094@gmail.com</a></p>
     <p>LinkedIn: <a href="https://linkedin.com/in/aryansonawane" target="_blank">linkedin.com/in/aryansonawane</a></p>
@@ -166,15 +234,18 @@
 
   <footer>
     <p>Connect with me on</p>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fas fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/aryansonawane" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/aryan-sonawane" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="mailto:aryan.sonawane094@gmail.com"><i class="fas fa-envelope"></i></a>
     <p>© 2025 Aryan Sonawane</p>
   </footer>
 
   <script>
     function toggleMode() {
-      document.body.classList.toggle('dark-mode');
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+      const btn = document.querySelector('.toggle-btn');
+      btn.textContent = body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
     }
   </script>
 </body>
